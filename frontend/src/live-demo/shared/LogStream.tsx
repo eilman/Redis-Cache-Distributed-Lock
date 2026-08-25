@@ -44,7 +44,7 @@ export default function LogStream({ logs, maxHeight = 200, onClear }: Props) {
   return (
     <div className="glass p-3 space-y-2">
       <div className="flex items-center justify-between">
-        <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">İşlem Loglari</h4>
+        <h4 className="text-[10px] text-gray-500 tracking-wide font-semibold">İŞLEM LOGLARI</h4>
         {onClear && logs.length > 0 && (
           <button onClick={onClear} className="text-[10px] text-gray-600 hover:text-gray-400 transition-colors">
             Temizle

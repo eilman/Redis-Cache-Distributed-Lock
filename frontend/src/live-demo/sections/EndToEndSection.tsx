@@ -201,11 +201,11 @@ export default function EndToEndSection() {
       incrementMetric('ordersProcessed')
       setResult(5, {
         success: true,
-        message: 'Sipariş onaylandı!',
-        detail: `Sipariş #1001 - ${PRODUCT_NAME} - ${PRODUCT_PRICE.toLocaleString('tr-TR')} TL`,
+        message: 'SİPARİŞ onaylandı!',
+        detail: `SİPARİŞ #1001 - ${PRODUCT_NAME} - ${PRODUCT_PRICE.toLocaleString('tr-TR')} TL`,
       })
-      pushLog('Sipariş Onay', `Sipariş #1001 tamamlandı`, 'success')
-      addLog('e2e-flow', 'success', `Sipariş onaylandı: #1001 - ${PRODUCT_NAME}`)
+      pushLog('SİPARİŞ Onay', `SİPARİŞ #1001 tamamlandı`, 'success')
+      addLog('e2e-flow', 'success', `SİPARİŞ onaylandı: #1001 - ${PRODUCT_NAME}`)
       setE2eProgress(6)
       markCompleted('e2e-flow')
       setShowCelebration(true)
@@ -213,7 +213,7 @@ export default function EndToEndSection() {
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
       setResult(5, { success: false, message: 'Hata', detail: msg })
-      pushLog('Sipariş Onay', `HATA: ${msg}`, 'error')
+      pushLog('SİPARİŞ Onay', `HATA: ${msg}`, 'error')
     } finally {
       setLoadingStep(null)
     }
@@ -221,7 +221,7 @@ export default function EndToEndSection() {
 
   const stepHandlers = [handleStep0, handleStep1, handleStep2, handleStep3, handleStep4, handleStep5]
 
-  const stepButtonLabels = ['Ürün Ara', 'Detay Görüntüle', 'Sepete Ekle', 'Stok Kontrol', 'Ode', 'Siparişi Onayla']
+  const stepButtonLabels = ['Ürün Ara', 'Detay Görüntüle', 'Sepete Ekle', 'Stok Kontrol', 'Ode', 'SİPARİŞi Onayla']
 
   const handleReset = () => {
     setE2eProgress(0)
@@ -240,7 +240,7 @@ export default function EndToEndSection() {
         variants={item}
         className="glass p-4 border border-emerald-500/20 bg-emerald-500/5 rounded-xl"
       >
-        <h3 className="text-sm font-bold text-emerald-400 mb-1">Senaryo: Uç Uca Sipariş Akışı</h3>
+        <h3 className="text-sm font-bold text-emerald-400 mb-1">Senaryo: Uç Uca SİPARİŞ AKIŞI</h3>
         <p className="text-xs text-gray-400 leading-relaxed">
           Bir müşterinin <span className="text-emerald-300 font-semibold">TechMart</span>'a girip sipariş
           tamamlamasina kadar <span className="text-amber-400 font-semibold">tüm adımlar</span>. Her
@@ -374,7 +374,7 @@ export default function EndToEndSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </motion.div>
-            <h3 className="text-lg font-bold text-emerald-400">Sipariş Tamamlandı!</h3>
+            <h3 className="text-lg font-bold text-emerald-400">SİPARİŞ Tamamlandı!</h3>
             <p className="text-xs text-gray-400">
               Tüm Redis pattern'leri başarıyla uygulandi.
             </p>
@@ -391,7 +391,7 @@ export default function EndToEndSection() {
               <p className="text-lg font-bold font-mono text-green-400">{globalMetrics.cacheHits}</p>
             </div>
             <div className="bg-black/20 rounded-lg p-3 text-center">
-              <p className="text-[9px] text-gray-500 uppercase">Sipariş</p>
+              <p className="text-[9px] text-gray-500">SİPARİŞ</p>
               <p className="text-lg font-bold font-mono text-emerald-400">{globalMetrics.ordersProcessed}</p>
             </div>
           </div>

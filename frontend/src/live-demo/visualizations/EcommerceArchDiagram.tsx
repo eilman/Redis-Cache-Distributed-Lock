@@ -56,7 +56,6 @@ export default function EcommerceArchDiagram({ onNodeClick }: Props) {
   return (
     <svg viewBox="0 0 820 500" className="w-full max-w-3xl mx-auto">
       <defs>
-        {/* Strong neon glow for particles */}
         <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="6" result="b1" />
           <feGaussianBlur stdDeviation="2" result="b2" />
@@ -66,7 +65,6 @@ export default function EcommerceArchDiagram({ onNodeClick }: Props) {
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
-        {/* Softer glow for lines and nodes */}
         <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
           <feGaussianBlur stdDeviation="3" result="blur" />
           <feMerge>
@@ -74,7 +72,6 @@ export default function EcommerceArchDiagram({ onNodeClick }: Props) {
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
-        {/* Background dot grid */}
         <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
           <circle cx="12" cy="12" r="0.4" fill="rgba(255,255,255,0.03)" />
         </pattern>
@@ -102,7 +99,7 @@ export default function EcommerceArchDiagram({ onNodeClick }: Props) {
           stroke="rgba(255,255,255,0.025)" strokeWidth="0.5" strokeDasharray="6 8" />
       ))}
 
-      {/* Connections — neon gradient tubes */}
+      {/* Connections — flowing neon dot streams */}
       {connections.map((c, i) => {
         const f = getCenter(c.from)
         const t = getCenter(c.to)
@@ -113,20 +110,25 @@ export default function EcommerceArchDiagram({ onNodeClick }: Props) {
             {/* Outer glow layer */}
             <line x1={f.x} y1={f.y} x2={t.x} y2={t.y}
               stroke={gradUrl} strokeWidth={on ? 8 : 3}
-              opacity={on ? 0.2 : 0.05} filter="url(#glow)" />
-            {/* Core line */}
-            <line x1={f.x} y1={f.y} x2={t.x} y2={t.y}
-              stroke={gradUrl} strokeWidth={on ? 1.8 : 0.8}
-              opacity={on ? 0.85 : 0.2} />
-            {/* Flowing particle */}
-            {on && (
-              <motion.circle
-                cx={f.x} cy={f.y} r={5}
-                fill="white" filter="url(#neon)" opacity={0.9}
-                animate={{ cx: t.x, cy: t.y }}
-                transition={{ duration: 0.85, ease: 'easeInOut' }}
+              opacity={on ? 0.2 : 0.04} filter="url(#glow)" />
+            {/* Flowing dot stream */}
+            <motion.line x1={f.x} y1={f.y} x2={t.x} y2={t.y}
+              stroke={gradUrl} strokeWidth={on ? 2 : 0.8}
+              opacity={on ? 0.85 : 0.2}
+              strokeDasharray={on ? '3 6' : '1.5 7.5'}
+              strokeLinecap="round"
+              animate={{ strokeDashoffset: [0, -18] }}
+              transition={{ duration: on ? 0.5 : 2, repeat: Infinity, ease: 'linear' }}
+            />
+            {/* Multiple flowing particles when active */}
+            {on && [0, 0.15, 0.3].map((delay, pi) => (
+              <motion.circle key={pi}
+                cx={f.x} cy={f.y} r={5 - pi * 1.5}
+                fill="white" filter="url(#neon)"
+                animate={{ cx: t.x, cy: t.y, opacity: [0.9 - pi * 0.25, 0] }}
+                transition={{ duration: 0.8, delay, ease: 'easeOut' }}
               />
-            )}
+            ))}
           </g>
         )
       })}

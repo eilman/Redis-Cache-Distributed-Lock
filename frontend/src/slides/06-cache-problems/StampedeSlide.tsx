@@ -350,7 +350,7 @@ export default function StampedeSlide() {
             transition={{ delay: 0.5 }}
             className="glass p-3 space-y-2"
           >
-            <h3 className="text-[11px] text-gray-500 uppercase tracking-wide font-semibold">Canlı Metrikler</h3>
+            <h3 className="text-[11px] text-gray-500 tracking-wide font-semibold">CANLI METRİKLER</h3>
             <div className="grid grid-cols-2 gap-2">
               <div className="bg-black/20 rounded-lg p-2 text-center">
                 <p className="text-[9px] text-gray-500">DB Sorgu</p>

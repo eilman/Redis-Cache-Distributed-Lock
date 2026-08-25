@@ -228,13 +228,13 @@ export default function MonitoringSection() {
       <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Hit/Miss Pie Chart */}
         <div className="glass p-4 rounded-xl">
-          <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">Hit / Miss Dağılımı</h4>
+          <h4 className="text-[10px] text-gray-500 tracking-wide font-semibold mb-2">HIT / MISS DAĞILIMI</h4>
           <HitMissChart hits={snapshot.hitCount} misses={snapshot.missCount} />
         </div>
 
         {/* Latency Area Chart */}
         <div className="glass p-4 rounded-xl">
-          <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">Latency Geçmişi</h4>
+          <h4 className="text-[10px] text-gray-500 tracking-wide font-semibold mb-2">LATENCY GEÇMİŞİ</h4>
           <LatencyChart data={latencyHistory} />
         </div>
       </motion.div>

@@ -12,6 +12,18 @@ interface Props {
   entries: CacheEntry[]
 }
 
+const statusStyles = {
+  active:   { border: '#00d4ff25', bg: '#00d4ff08', glow: '#00d4ff' },
+  expiring: { border: '#fbbf2430', bg: '#fbbf2410', glow: '#fbbf24' },
+  expired:  { border: '#ffffff08', bg: '#00000030', glow: 'transparent' },
+}
+
+function getBarColor(percent: number): string {
+  if (percent > 60) return '#4ade80'
+  if (percent > 25) return '#fbbf24'
+  return '#f87171'
+}
+
 export default function CacheStateGrid({ entries }: Props) {
   return (
     <div className="glass p-3 space-y-2">
@@ -20,7 +32,8 @@ export default function CacheStateGrid({ entries }: Props) {
         <AnimatePresence>
           {entries.map((entry) => {
             const ttlPercent = entry.maxTtl > 0 ? (entry.ttl / entry.maxTtl) * 100 : 0
-            const barColor = ttlPercent > 60 ? 'bg-green-500' : ttlPercent > 25 ? 'bg-amber-500' : 'bg-red-500'
+            const barColor = getBarColor(ttlPercent)
+            const style = statusStyles[entry.status]
 
             return (
               <motion.div
@@ -28,26 +41,29 @@ export default function CacheStateGrid({ entries }: Props) {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: entry.status === 'expired' ? 0.4 : 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.6 }}
-                className={`p-2 rounded-lg border ${
-                  entry.status === 'expired'
-                    ? 'border-gray-700/30 bg-gray-900/30'
-                    : entry.status === 'expiring'
-                    ? 'border-amber-500/20 bg-amber-500/5'
-                    : 'border-cyan-500/15 bg-cyan-500/5'
-                }`}
+                className="p-2 rounded-lg border"
+                style={{
+                  borderColor: style.border,
+                  backgroundColor: style.bg,
+                  boxShadow: entry.status !== 'expired' ? `0 0 12px ${style.glow}10, inset 0 1px 0 rgba(255,255,255,0.03)` : undefined,
+                }}
               >
-                <p className="text-[10px] font-mono text-cyan-400 truncate">{entry.key}</p>
+                <p className="text-[10px] font-mono truncate" style={{ color: '#00d4ff' }}>{entry.key}</p>
                 <p className="text-[10px] text-gray-400 truncate mt-0.5">{entry.value}</p>
                 <div className="mt-1.5">
                   <div className="flex justify-between text-[8px] mb-0.5">
                     <span className="text-gray-600">TTL</span>
-                    <span className={entry.status === 'expired' ? 'text-gray-600' : 'text-gray-400'}>
+                    <span style={{ color: entry.status === 'expired' ? '#6b7280' : barColor }}>
                       {entry.status === 'expired' ? 'EXPIRED' : `${entry.ttl}s`}
                     </span>
                   </div>
-                  <div className="w-full h-1 bg-black/30 rounded-full overflow-hidden">
+                  <div className="w-full h-1 bg-black/40 rounded-full overflow-hidden">
                     <motion.div
-                      className={`h-full rounded-full ${barColor}`}
+                      className="h-full rounded-full"
+                      style={{
+                        backgroundColor: barColor,
+                        boxShadow: ttlPercent > 0 ? `0 0 6px ${barColor}50` : undefined,
+                      }}
                       animate={{ width: `${ttlPercent}%` }}
                       transition={{ duration: 0.3 }}
                     />

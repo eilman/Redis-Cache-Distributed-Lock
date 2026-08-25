@@ -290,7 +290,7 @@ export default function TtlInvalidationSection() {
       <div className="grid grid-cols-2 gap-4">
         {/* Left: Input Panel */}
         <div className="p-4 rounded-2xl border border-cyan-500/20 bg-white/[0.02] backdrop-blur-md space-y-3">
-          <h4 className="text-xs text-gray-500 uppercase tracking-wide font-semibold">Cache İşlemleri</h4>
+          <h4 className="text-xs text-gray-500 tracking-wide font-semibold">CACHE İŞLEMLERİ</h4>
 
           {/* Key */}
           <div>
@@ -352,7 +352,7 @@ export default function TtlInvalidationSection() {
 
         {/* Right: Circular Countdown Timer */}
         <div className="p-4 rounded-2xl border border-cyan-500/20 bg-white/[0.02] backdrop-blur-md flex flex-col items-center justify-center gap-3">
-          <h4 className="text-xs text-gray-500 uppercase tracking-wide font-semibold">TTL Geri Sayım</h4>
+          <h4 className="text-xs text-gray-500 tracking-wide font-semibold">TTL GERİ SAYIM</h4>
 
           <div className="relative w-44 h-44">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 160 160">

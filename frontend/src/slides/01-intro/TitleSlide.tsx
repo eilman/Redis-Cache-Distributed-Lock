@@ -10,19 +10,6 @@ function NeonRedisLogo() {
       transition={{ duration: 1, type: 'spring', stiffness: 100 }}
       className="relative"
     >
-      {/* Outer glow rings */}
-      <motion.div
-        className="absolute inset-0 rounded-full"
-        animate={{
-          boxShadow: [
-            '0 0 30px rgba(0,240,255,0.2), 0 0 60px rgba(176,64,255,0.1)',
-            '0 0 50px rgba(0,240,255,0.4), 0 0 100px rgba(176,64,255,0.2)',
-            '0 0 30px rgba(0,240,255,0.2), 0 0 60px rgba(176,64,255,0.1)',
-          ],
-        }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ width: 120, height: 120 }}
-      />
       <svg viewBox="0 0 100 100" className="w-28 h-28 relative z-10">
         <defs>
           <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -53,8 +40,9 @@ function NeonRedisLogo() {
           strokeWidth="1.5"
         />
         <text
-          x="50" y="58"
+          x="50" y="50"
           textAnchor="middle"
+          dy="0.35em"
           fill="url(#logoGrad)"
           fontSize="26"
           fontWeight="bold"

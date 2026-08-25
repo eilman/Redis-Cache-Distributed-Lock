@@ -46,7 +46,7 @@ export default function MonitoringProblemSlide() {
         transition={{ delay: 0.4 }}
         className="glass p-4 max-w-3xl mx-auto"
       >
-        <h3 className="text-sm text-gray-400 text-center mb-4 uppercase tracking-wide font-mono">// Redis Gösterge Paneli</h3>
+        <h3 className="text-sm text-gray-400 text-center mb-4 tracking-wide font-mono">// REDIS GÖSTERGE PANELİ</h3>
         <div className="grid grid-cols-4 gap-4">
           {gauges.map((gauge, i) => (
             <motion.div

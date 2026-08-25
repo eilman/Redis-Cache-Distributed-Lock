@@ -83,7 +83,7 @@ export default function KeyStandardsSlide() {
       <div className="grid grid-cols-2 gap-3">
         {/* Left: Real-world company examples */}
         <motion.div variants={stagger.container} initial="hidden" animate="show" className="space-y-1.5">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Production Örnekleri</h3>
+          <h3 className="text-xs font-semibold text-gray-500 tracking-wide">PRODUCTION ÖRNEKLERİ</h3>
           {companyExamples.map((ex) => (
             <motion.div
               key={ex.company}
@@ -111,7 +111,7 @@ export default function KeyStandardsSlide() {
         >
           {/* Anti-patterns table */}
           <div className="glass p-3 space-y-2">
-            <h3 className="text-xs font-semibold text-red-400 uppercase tracking-wide">Anti-Pattern → Doğru Kullanım</h3>
+            <h3 className="text-xs font-semibold text-red-400 tracking-wide">ANTI-PATTERN → DOĞRU KULLANIM</h3>
             {antiPatterns.map((ap, i) => (
               <div key={i} className="flex items-center gap-2 text-[11px] font-mono">
                 <span className="text-red-400 line-through opacity-60 min-w-[120px]">{ap.bad}</span>
@@ -124,7 +124,7 @@ export default function KeyStandardsSlide() {
 
           {/* Naming Convention Rules */}
           <div className="glass p-3 space-y-1.5">
-            <h3 className="text-xs font-semibold text-cyan-400 uppercase tracking-wide">Key Convention Kuralları</h3>
+            <h3 className="text-xs font-semibold text-cyan-400 tracking-wide">KEY CONVENTION KURALLARI</h3>
             {[
               { rule: 'Delimiter: ":"', desc: 'Hiyerarsi ayırıcı (Redis Cluster slot uyumlu)' },
               { rule: 'Kelime: kebab-case', desc: 'user-service (camelCase değil)' },

@@ -69,7 +69,7 @@ export default function ResilienceSection() {
     }
   }
 
-  // 2. Fail-Open: Sipariş Ver
+  // 2. Fail-Open: SİPARİŞ Ver
   const handleFailOpen = async () => {
     setLoadingStep(2)
     try {
@@ -81,7 +81,7 @@ export default function ResilienceSection() {
         'FAIL_OPEN',
         data?.source
           ? `Basarili (kaynak: ${data.source}) - DB fallback ile devam edildi`
-          : 'Sipariş işlendi (DB fallback)',
+          : 'SİPARİŞ işlendi (DB fallback)',
         'success',
         ms,
       )
@@ -96,7 +96,7 @@ export default function ResilienceSection() {
     }
   }
 
-  // 3. Fail-Close: Sipariş Ver
+  // 3. Fail-Close: SİPARİŞ Ver
   const handleFailClose = async () => {
     setLoadingStep(3)
     try {
@@ -106,16 +106,16 @@ export default function ResilienceSection() {
       const data = res.data
       pushLog(
         'FAIL_CLOSE',
-        data?.error ?? 'Sipariş REDDEDİLDİ - güvenlik öncelikli',
+        data?.error ?? 'SİPARİŞ REDDEDİLDİ - güvenlik öncelikli',
         'error',
         ms,
       )
-      addLog('resilience', 'error', 'Fail-Close: Sipariş reddedildi', ms)
+      addLog('resilience', 'error', 'Fail-Close: SİPARİŞ reddedildi', ms)
       incrementMetric('totalRequests')
     } catch (err: unknown) {
       // Fail-close is expected to reject — that's the point
       const ms = Math.round(performance.now())
-      pushLog('FAIL_CLOSE', 'Sipariş REDDEDİLDİ - ServiceUnavailableException', 'error', undefined)
+      pushLog('FAIL_CLOSE', 'SİPARİŞ REDDEDİLDİ - ServiceUnavailableException', 'error', undefined)
       addLog('resilience', 'error', 'Fail-Close: İstek reddedildi (503)', undefined)
       incrementMetric('totalRequests')
     } finally {
@@ -181,7 +181,7 @@ export default function ResilienceSection() {
         variants={item}
         className="glass p-4 border border-green-500/20 bg-green-500/5 rounded-xl"
       >
-        <h3 className="text-sm font-bold text-green-400 mb-1">Senaryo: Redis Çökme Aninda Sipariş Akışı</h3>
+        <h3 className="text-sm font-bold text-green-400 mb-1">Senaryo: Redis Çökme Aninda SİPARİŞ AKIŞI</h3>
         <p className="text-xs text-gray-400 leading-relaxed">
           Peak saatte Redis sunucusu çöktü.{' '}
           <span className="text-amber-400 font-semibold">50.000</span> aktif kullanıcı siparişte.
@@ -264,7 +264,7 @@ export default function ResilienceSection() {
               </svg>
             }
           >
-            2. Fail-Open: Sipariş Ver
+            2. Fail-Open: SİPARİŞ Ver
           </ActionButton>
 
           <ActionButton
@@ -278,7 +278,7 @@ export default function ResilienceSection() {
               </svg>
             }
           >
-            3. Fail-Close: Sipariş Ver
+            3. Fail-Close: SİPARİŞ Ver
           </ActionButton>
 
           <ActionButton
@@ -304,23 +304,23 @@ export default function ResilienceSection() {
 
       {/* -------- Ecommerce Flow Diagram -------- */}
       <motion.div variants={item} className="glass p-4 rounded-xl">
-        <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">
-          Redis Hata Durumunda İstek Akışı
+        <h4 className="text-[10px] text-gray-500 tracking-wide font-semibold mb-2">
+          REDIS HATA DURUMUNDA İSTEK AKIŞI
         </h4>
         <CircuitBreakerFlowDiagram />
       </motion.div>
 
       {/* -------- Fail-Open vs Fail-Close Comparison -------- */}
       <motion.div variants={item}>
-        <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">
-          Fail-Open vs Fail-Close Karşılaştırması
+        <h4 className="text-[10px] text-gray-500 tracking-wide font-semibold mb-2">
+          FAIL-OPEN VS FAIL-CLOSE KARŞILAŞTIRMASI
         </h4>
         <ComparisonPanel
           leftTitle="Fail-Close (Güvenlik Öncelikli)"
           rightTitle="Fail-Open (Kullanılabilirlik Öncelikli)"
           leftMetrics={[
             { label: 'Strateji', value: 'Güvenlik öncelikli' },
-            { label: 'Redis cokerse', value: 'Siparişi REDDEDER' },
+            { label: 'Redis cokerse', value: 'SİPARİŞi REDDEDER' },
             { label: 'Kullanim alani', value: 'Ödeme, stok azaltma' },
           ]}
           rightMetrics={[

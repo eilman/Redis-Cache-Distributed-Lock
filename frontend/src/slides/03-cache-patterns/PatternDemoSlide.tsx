@@ -130,7 +130,7 @@ export default function PatternDemoSlide() {
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="space-y-3">
           {/* Product form */}
           <div className="glass p-3 space-y-2">
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Ürün Bilgileri</h3>
+            <h3 className="text-xs font-semibold text-gray-500 tracking-wide">ÜRÜN BİLGİLERİ</h3>
 
             <div className="flex items-center gap-2">
               <label className="text-xs text-gray-500 w-12">ID</label>

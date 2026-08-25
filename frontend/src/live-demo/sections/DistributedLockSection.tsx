@@ -183,7 +183,7 @@ function LockMechanismTab() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
         </svg>
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Kilit Adı</p>
+          <p className="text-[10px] text-gray-500 tracking-wide font-semibold">KİLİT ADI</p>
           <p className="text-sm text-purple-300 font-mono truncate">{LOCK_NAME}</p>
         </div>
       </motion.div>
@@ -191,7 +191,7 @@ function LockMechanismTab() {
       {/* Lease Time Slider */}
       <motion.div variants={item} className="glass p-3 rounded-xl space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Lease Süresi</span>
+          <span className="text-[10px] text-gray-500 tracking-wide font-semibold">LEASE SÜRESİ</span>
           <span className="text-sm font-bold font-mono text-purple-400">{leaseSeconds}s</span>
         </div>
         <input
@@ -368,8 +368,8 @@ function LockMechanismTab() {
 
       {/* Ecommerce Flow Diagram */}
       <motion.div variants={item} className="glass p-4 rounded-xl">
-        <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">
-          Kilit Edinme Akışı
+        <h4 className="text-[10px] text-gray-500 tracking-wide font-semibold mb-2">
+          KİLİT EDİNME AKIŞI
         </h4>
         <LockAcquireFlowDiagram />
       </motion.div>
@@ -533,7 +533,7 @@ function ConcurrentBuyersTab() {
       {/* Buyer Count Slider */}
       <motion.div variants={item} className="glass p-3 rounded-xl space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Eş Zamanlı Müşteri Sayısı</span>
+          <span className="text-[10px] text-gray-500 tracking-wide font-semibold">EŞ ZAMANLI MÜŞTERİ SAYISI</span>
           <span className="text-sm font-bold font-mono text-purple-400">{buyerCount}</span>
         </div>
         <input

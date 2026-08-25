@@ -241,8 +241,8 @@ export default function ProblemIntroSlide() {
                 <div className="col-span-3 space-y-2">
                   {/* Animated flow diagram */}
                   <div>
-                    <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-1.5 text-center">
-                      Akış Diyagramı
+                    <h4 className="text-[10px] text-gray-500 tracking-wide font-semibold mb-1.5 text-center">
+                      AKIŞ DİYAGRAMI
                     </h4>
                     <div className="flex items-center justify-center">
                       {p.flow.map((step, j) => (
