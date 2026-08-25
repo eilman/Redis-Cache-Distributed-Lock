@@ -59,7 +59,7 @@ export default function CacheStateGrid({ entries }: Props) {
         </AnimatePresence>
       </div>
       {entries.length === 0 && (
-        <p className="text-[11px] text-gray-600 text-center py-6">Cache bos. Bir islem calistirin.</p>
+        <p className="text-[11px] text-gray-600 text-center py-6">Cache bos. Bir işlem çalıştırin.</p>
       )}
     </div>
   )

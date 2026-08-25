@@ -14,7 +14,7 @@ export default function LatencyChart({ data }: Props) {
   if (data.length === 0) {
     return (
       <div className="flex items-center justify-center h-48 text-gray-500 text-sm">
-        Henuz veri yok. Demo calistirin.
+        Henuz veri yok. Demo çalıştırin.
       </div>
     )
   }

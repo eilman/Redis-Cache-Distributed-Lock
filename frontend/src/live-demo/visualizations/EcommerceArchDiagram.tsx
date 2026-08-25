@@ -7,16 +7,16 @@ interface Props {
 }
 
 const nodes = [
-  { id: 'browser', label: 'Browser / Mobile', x: 400, y: 30, w: 140, h: 40, color: '#3b82f6', section: null },
-  { id: 'lb', label: 'Load Balancer', x: 400, y: 110, w: 130, h: 36, color: '#8b5cf6', section: null },
-  { id: 'api1', label: 'API Pod 1', x: 230, y: 190, w: 100, h: 34, color: '#06b6d4', section: null },
-  { id: 'api2', label: 'API Pod 2', x: 400, y: 190, w: 100, h: 34, color: '#06b6d4', section: null },
-  { id: 'api3', label: 'API Pod 3', x: 570, y: 190, w: 100, h: 34, color: '#06b6d4', section: null },
-  { id: 'redis-cache', label: 'Redis Cache', x: 200, y: 300, w: 120, h: 40, color: '#DC382D', section: 'cache-patterns' as DemoSection },
-  { id: 'redis-lock', label: 'Redis Lock', x: 400, y: 300, w: 120, h: 40, color: '#DC382D', section: 'distributed-lock' as DemoSection },
-  { id: 'redis-session', label: 'Redis Session', x: 600, y: 300, w: 120, h: 40, color: '#DC382D', section: null },
-  { id: 'db', label: 'PostgreSQL', x: 300, y: 410, w: 120, h: 40, color: '#22c55e', section: null },
-  { id: 'prometheus', label: 'Prometheus', x: 550, y: 410, w: 120, h: 40, color: '#eab308', section: 'monitoring' as DemoSection },
+  { id: 'browser', label: 'Browser / Mobile', x: 400, y: 30, w: 160, h: 44, color: '#3b82f6', section: null },
+  { id: 'lb', label: 'Load Balancer', x: 400, y: 110, w: 150, h: 40, color: '#8b5cf6', section: null },
+  { id: 'api1', label: 'API Pod 1', x: 220, y: 200, w: 110, h: 38, color: '#06b6d4', section: null },
+  { id: 'api2', label: 'API Pod 2', x: 400, y: 200, w: 110, h: 38, color: '#06b6d4', section: null },
+  { id: 'api3', label: 'API Pod 3', x: 580, y: 200, w: 110, h: 38, color: '#06b6d4', section: null },
+  { id: 'redis-cache', label: 'Redis Cache', x: 190, y: 310, w: 130, h: 44, color: '#DC382D', section: 'cache-patterns' as DemoSection },
+  { id: 'redis-lock', label: 'Redis Lock', x: 400, y: 310, w: 130, h: 44, color: '#DC382D', section: 'distributed-lock' as DemoSection },
+  { id: 'redis-session', label: 'Redis Session', x: 610, y: 310, w: 130, h: 44, color: '#DC382D', section: null },
+  { id: 'db', label: 'PostgreSQL', x: 300, y: 420, w: 130, h: 44, color: '#22c55e', section: null },
+  { id: 'prometheus', label: 'Prometheus', x: 550, y: 420, w: 130, h: 44, color: '#eab308', section: 'monitoring' as DemoSection },
 ]
 
 const connections = [
@@ -46,7 +46,7 @@ export default function EcommerceArchDiagram({ onNodeClick }: Props) {
   }
 
   return (
-    <svg viewBox="0 0 800 480" className="w-full max-w-3xl mx-auto">
+    <svg viewBox="0 0 820 500" className="w-full max-w-3xl mx-auto">
       <defs>
         <filter id="glow-arch">
           <feGaussianBlur stdDeviation="3" result="blur" />
@@ -104,10 +104,10 @@ export default function EcommerceArchDiagram({ onNodeClick }: Props) {
             strokeWidth={1.2}
           />
           {/* Health dot */}
-          <circle cx={node.x + node.w / 2 - 10} cy={node.y + 8} r={3} fill="#22c55e" />
+          <circle cx={node.x + node.w / 2 - 12} cy={node.y + 10} r={3} fill="#22c55e" />
           <text
             x={node.x}
-            y={node.y + node.h / 2 + 4}
+            y={node.y + node.h / 2 + 5}
             fill="white"
             fontSize="11"
             fontWeight="600"

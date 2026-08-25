@@ -84,12 +84,12 @@ export default function RedlockSection() {
       animTimerRef.current.push(finalTimer)
 
       if (acquired) {
-        pushLog('REDLOCK ACQUIRE', `Kilit alindi (${NODE_COUNT} node'dan ${totalNodes}'ine) owner: ${uuid}`, 'lock', ms)
-        addLog('redlock', 'lock', `Redlock kilit alindi: ${RESOURCE}`, ms)
+        pushLog('REDLOCK ACQUIRE', `Kilit alındı (${NODE_COUNT} node'dan ${totalNodes}'ine) owner: ${uuid}`, 'lock', ms)
+        addLog('redlock', 'lock', `Redlock kilit alındı: ${RESOURCE}`, ms)
         markCompleted('redlock')
       } else {
-        pushLog('REDLOCK ACQUIRE', data?.message ?? 'Quorum saglanamadi', 'error', ms)
-        addLog('redlock', 'error', 'Redlock quorum basarisiz', ms)
+        pushLog('REDLOCK ACQUIRE', data?.message ?? 'Quorum sağlanamadı', 'error', ms)
+        addLog('redlock', 'error', 'Redlock quorum başarısız', ms)
       }
       incrementMetric('totalRequests')
     } catch (err: unknown) {
@@ -114,8 +114,8 @@ export default function RedlockSection() {
       setQuorumReached(null)
       setOwnerId(null)
       setAnimating(false)
-      pushLog('REDLOCK RELEASE', 'Tum node\'lardan kilit birakildi', 'success', ms)
-      addLog('redlock', 'success', `Redlock kilit birakildi: ${RESOURCE}`, ms)
+      pushLog('REDLOCK RELEASE', 'Tüm node\'lardan kilit bırakıldı', 'success', ms)
+      addLog('redlock', 'success', `Redlock kilit bırakıldı: ${RESOURCE}`, ms)
       incrementMetric('totalRequests')
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
@@ -138,7 +138,7 @@ export default function RedlockSection() {
       const winner = data?.acquiredBy ?? data?.winner ?? data?.podName ?? 'Pod-1'
       setScheduledResult(winner)
       pushLog('SCHEDULED JOB', `Kilidi alan pod: ${winner}`, 'lock', ms)
-      addLog('redlock', 'info', `Zamanlanmis job: ${winner} kazandi`, ms)
+      addLog('redlock', 'info', `Zamanlanmış job: ${winner} kazandi`, ms)
       incrementMetric('totalRequests')
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
@@ -155,11 +155,11 @@ export default function RedlockSection() {
         variants={item}
         className="glass p-4 border border-rose-500/20 bg-rose-500/5 rounded-xl"
       >
-        <h3 className="text-sm font-bold text-rose-400 mb-1">Senaryo: Guvenli Odeme</h3>
+        <h3 className="text-sm font-bold text-rose-400 mb-1">Senaryo: Güvenli Ödeme</h3>
         <p className="text-xs text-gray-400 leading-relaxed">
-          Musteri <span className="text-amber-400 font-semibold">74.999 TL</span>'lik MacBook Pro icin
-          odeme yapiyor. <span className="text-rose-300 font-semibold">3 farkli Redis node</span>'u var.
-          Double-charge <span className="text-red-400 font-bold">olmamali!</span>
+          Müşteri <span className="text-amber-400 font-semibold">74.999 TL</span>'lik MacBook Pro için
+          ödeme yapiyor. <span className="text-rose-300 font-semibold">3 farklı Redis node</span>'u var.
+          Double-charge <span className="text-red-400 font-bold">olmamalı!</span>
         </p>
       </motion.div>
 
@@ -186,7 +186,7 @@ export default function RedlockSection() {
             </svg>
           }
         >
-          Odeme Baslat (Redlock)
+          Ödeme Başlat (Redlock)
         </ActionButton>
 
         <ActionButton
@@ -200,7 +200,7 @@ export default function RedlockSection() {
             </svg>
           }
         >
-          Kilidi Birak
+          Kilidi Bırak
         </ActionButton>
 
         <ActionButton
@@ -213,7 +213,7 @@ export default function RedlockSection() {
             </svg>
           }
         >
-          Zamanlanmis Job
+          Zamanlanmış Job
         </ActionButton>
       </motion.div>
 
@@ -244,13 +244,13 @@ export default function RedlockSection() {
           rightTitle="Redlock (5 Node)"
           leftMetrics={[
             { label: 'Redis Node', value: '1' },
-            { label: 'Node cokarsa', value: 'KAYIP' },
-            { label: 'Latency', value: 'Dusuk' },
+            { label: 'Node çökarsa', value: 'KAYIP' },
+            { label: 'Latency', value: 'Düşük' },
           ]}
           rightMetrics={[
             { label: 'Redis Node', value: '5' },
-            { label: 'Node cokarsa', value: 'GUVENLI' },
-            { label: 'Latency', value: 'Biraz yuksek' },
+            { label: 'Node çökarsa', value: 'GÜVENLİ' },
+            { label: 'Latency', value: 'Biraz yüksek' },
           ]}
         />
       </motion.div>

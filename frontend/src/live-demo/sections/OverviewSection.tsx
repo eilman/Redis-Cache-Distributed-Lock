@@ -18,14 +18,14 @@ const exploreCards: { section: DemoSection; title: string; desc: string; icon: s
   {
     section: 'cache-problems',
     title: 'Cache Problemleri',
-    desc: 'Stampede, Penetration, Stale Data sorunlari ve cozumleri',
+    desc: 'Stampede, Penetration, Stale Data sorunları ve çözümleri',
     icon: '\u{1F6A8}',
     color: 'red',
   },
   {
     section: 'distributed-lock',
     title: 'Distributed Lock',
-    desc: 'SET NX PX ile stok guvenligi ve race-condition onleme',
+    desc: 'SET NX PX ile stok güvenliği ve race-condition önleme',
     icon: '\u{1F512}',
     color: 'purple',
   },
@@ -53,23 +53,23 @@ export default function OverviewSection() {
       {/* Title */}
       <motion.div variants={item} className="text-center">
         <h2 className="text-3xl font-bold text-gradient">TechMart E-Commerce Mimarisi</h2>
-        <p className="text-sm text-gray-400 mt-2">Redis ile yuksek performansli e-ticaret altyapisi</p>
+        <p className="text-sm text-gray-400 mt-2">Redis ile yüksek performansli e-ticaret altyapisi</p>
       </motion.div>
 
       {/* Description Card */}
       <motion.div variants={item} className="glass p-5">
         <p className="text-sm text-gray-300 leading-relaxed">
-          Turkiye'nin en buyuk online elektronik magazasi.
-          Gunluk <span className="text-cyan-400 font-semibold">500K</span> kullanici,
-          Black Friday'de <span className="text-amber-400 font-semibold">5M</span> es zamanli istek.
-          Redis cache, distributed lock ve session yonetimi ile
-          <span className="text-green-400 font-semibold"> sub-millisecond</span> yanit sureleri sagliyoruz.
+          Türkiye'nin en büyük online elektronik mağazası.
+          Günlük <span className="text-cyan-400 font-semibold">500K</span> kullanıcı,
+          Black Friday'de <span className="text-amber-400 font-semibold">5M</span> eş zamanlı istek.
+          Redis cache, distributed lock ve session yönetimi ile
+          <span className="text-green-400 font-semibold"> sub-millisecond</span> yanit süreleri sağlıyoruz.
         </p>
       </motion.div>
 
       {/* KPI Grid */}
       <motion.div variants={item} className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <MetricTicker value={500000} label="Gunluk Kullanici" suffix="" color="text-cyan-400" size="md" />
+        <MetricTicker value={500000} label="Günlük Kullanıcı" suffix="" color="text-cyan-400" size="md" />
         <div className="bg-black/20 rounded-xl p-3 text-center">
           <p className="text-[9px] text-gray-500 uppercase tracking-wide mb-1">Response Time</p>
           <div className="flex items-center justify-center gap-2">
@@ -90,7 +90,7 @@ export default function OverviewSection() {
 
       {/* Explore Buttons */}
       <motion.div variants={item}>
-        <h3 className="text-xs text-gray-500 uppercase tracking-wide font-semibold mb-3">Kesfet</h3>
+        <h3 className="text-xs text-gray-500 uppercase tracking-wide font-semibold mb-3">Keşfet</h3>
         <div className="grid grid-cols-2 gap-3">
           {exploreCards.map((card) => {
             const c = colorClasses[card.color] || colorClasses.cyan

@@ -106,7 +106,7 @@ export default function CacheProblemsSection() {
       addLog('cache-problems', 'error', `Stampede: ${stampedeConcurrent} concurrent DB sorgu`, latency)
     } catch (err) {
       pushLog('STAMPEDE', `HATA: ${err instanceof Error ? err.message : 'Bilinmeyen hata'}`, 'error')
-      addLog('cache-problems', 'error', 'Stampede testi basarisiz')
+      addLog('cache-problems', 'error', 'Stampede testi başarısız')
     } finally {
       setStampedeUnprotectedLoading(false)
       setTimeout(() => setTrafficRunning(false), 3000)
@@ -138,7 +138,7 @@ export default function CacheProblemsSection() {
       addLog('cache-problems', 'success', `Mitigated: 1 DB sorgu, ${stampedeConcurrent - 1} cache hit`, latency)
     } catch (err) {
       pushLog('KORUMALI', `HATA: ${err instanceof Error ? err.message : 'Bilinmeyen hata'}`, 'error')
-      addLog('cache-problems', 'error', 'Korumali stampede testi basarisiz')
+      addLog('cache-problems', 'error', 'Korumali stampede testi başarısız')
     } finally {
       setStampedeProtectedLoading(false)
       setTimeout(() => setTrafficRunning(false), 3000)
@@ -172,23 +172,23 @@ export default function CacheProblemsSection() {
       setStampedeComparison({
         left: [
           { label: 'DB Sorgu', value: dbQueriesU },
-          { label: 'Toplam Sure', value: `${latencyU}ms` },
-          { label: 'Concurrent Istek', value: stampedeConcurrent },
+          { label: 'Toplam Süre', value: `${latencyU}ms` },
+          { label: 'Concurrent İstek', value: stampedeConcurrent },
           { label: 'DB Yuku', value: 'Kritik' },
         ],
         right: [
           { label: 'DB Sorgu', value: dbQueriesP },
-          { label: 'Toplam Sure', value: `${latencyP}ms` },
-          { label: 'Concurrent Istek', value: stampedeConcurrent },
+          { label: 'Toplam Süre', value: `${latencyP}ms` },
+          { label: 'Concurrent İstek', value: stampedeConcurrent },
           { label: 'DB Yuku', value: 'Minimal' },
         ],
       })
 
-      pushLog('KARSILASTIR', `Korumasiz: ${latencyU}ms vs Korumali: ${latencyP}ms`, 'info')
-      addLog('cache-problems', 'info', `Karsilastirma: ${latencyU}ms vs ${latencyP}ms`)
+      pushLog('KARŞILAŞTIR', `Korumasız: ${latencyU}ms vs Korumali: ${latencyP}ms`, 'info')
+      addLog('cache-problems', 'info', `Karşılaştırma: ${latencyU}ms vs ${latencyP}ms`)
     } catch (err) {
-      pushLog('KARSILASTIR', `HATA: ${err instanceof Error ? err.message : 'Bilinmeyen hata'}`, 'error')
-      addLog('cache-problems', 'error', 'Karsilastirma basarisiz')
+      pushLog('KARŞILAŞTIR', `HATA: ${err instanceof Error ? err.message : 'Bilinmeyen hata'}`, 'error')
+      addLog('cache-problems', 'error', 'Karşılaştırma başarısız')
     } finally {
       setStampedeCompareLoading(false)
       setTimeout(() => setTrafficRunning(false), 3000)
@@ -231,7 +231,7 @@ export default function CacheProblemsSection() {
           { label: 'Risk', value: 'Her istek DB\'ye gider' },
         ],
         right: [
-          { label: 'Strateji', value: 'Null Cache ACIK' },
+          { label: 'Strateji', value: 'Null Cache AÇIK' },
           { label: 'DB Sorgu', value: penNullCache ? dbQueries : '?' },
           { label: 'Cache Hit', value: penNullCache ? cacheHits : '?' },
           { label: 'Risk', value: 'Sadece ilk istek DB\'ye' },
@@ -239,7 +239,7 @@ export default function CacheProblemsSection() {
       })
 
       if (penNullCache) {
-        pushLog('PENETRATION', `${penCount} istek, Null Cache ACIK => DB: ${dbQueries}, Cache Hit: ${cacheHits}`, 'success', latency)
+        pushLog('PENETRATION', `${penCount} istek, Null Cache AÇIK => DB: ${dbQueries}, Cache Hit: ${cacheHits}`, 'success', latency)
         addLog('cache-problems', 'success', `Penetration (null cache): DB=${dbQueries}, Hits=${cacheHits}`, latency)
       } else {
         pushLog('PENETRATION', `${penCount} istek, Null Cache KAPALI => Her istek DB'ye!`, 'error', latency)
@@ -247,7 +247,7 @@ export default function CacheProblemsSection() {
       }
     } catch (err) {
       pushLog('PENETRATION', `HATA: ${err instanceof Error ? err.message : 'Bilinmeyen hata'}`, 'error')
-      addLog('cache-problems', 'error', 'Penetration testi basarisiz')
+      addLog('cache-problems', 'error', 'Penetration testi başarısız')
     } finally {
       setPenLoading(false)
     }
@@ -266,8 +266,8 @@ export default function CacheProblemsSection() {
           <div>
             <h3 className="text-sm font-bold text-red-400">Thundering Herd / Cache Stampede</h3>
             <p className="text-[12px] text-gray-400 mt-1 leading-relaxed">
-              Black Friday saat 00:00. RTX 5090 icin <span className="text-amber-400 font-bold">10.000 kisinin</span> bekledigini dusunun...
-              Cache TTL doldu, tum istekler ayni anda DB'ye gidiyor. Sonuc: DB cokuyor!
+              Black Friday saat 00:00. RTX 5090 için <span className="text-amber-400 font-bold">10.000 kisinin</span> beklediğini düşünün...
+              Cache TTL doldu, tüm istekler ayni anda DB'ye gidiyor. Sonuc: DB çöküyor!
             </p>
           </div>
         </div>
@@ -278,7 +278,7 @@ export default function CacheProblemsSection() {
         {/* Concurrent slider */}
         <div>
           <div className="flex justify-between items-center mb-1">
-            <label className="text-[10px] text-gray-500 uppercase tracking-wide">Esanli Istek Sayisi</label>
+            <label className="text-[10px] text-gray-500 uppercase tracking-wide">Eşanlı İstek Sayısı</label>
             <span className="text-xs font-mono text-red-400 font-bold">{stampedeConcurrent}</span>
           </div>
           <input
@@ -299,7 +299,7 @@ export default function CacheProblemsSection() {
 
         {/* Product ID */}
         <div>
-          <label className="text-[10px] text-gray-500 uppercase tracking-wide">Urun ID</label>
+          <label className="text-[10px] text-gray-500 uppercase tracking-wide">Ürün ID</label>
           <input
             type="number"
             value={stampedeProductId}
@@ -332,7 +332,7 @@ export default function CacheProblemsSection() {
             variant="warning"
             size="sm"
           >
-            KARSILASTIR
+            KARŞILAŞTIR
           </ActionButton>
         </div>
       </div>
@@ -349,7 +349,7 @@ export default function CacheProblemsSection() {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <RequestTimeline
             entries={stampedeTimeline}
-            title="Istek Zaman Cizelgesi"
+            title="İstek Zaman Çizelgesi"
           />
         </motion.div>
       )}
@@ -358,7 +358,7 @@ export default function CacheProblemsSection() {
       {stampedeComparison && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <ComparisonPanel
-            leftTitle="Korumasiz"
+            leftTitle="Korumasız"
             rightTitle="Korumali (Lock)"
             leftMetrics={stampedeComparison.left}
             rightMetrics={stampedeComparison.right}
@@ -377,8 +377,8 @@ export default function CacheProblemsSection() {
           <div>
             <h3 className="text-sm font-bold text-amber-400">Cache Penetration</h3>
             <p className="text-[12px] text-gray-400 mt-1 leading-relaxed">
-              Kullanicilar var olmayan bir urunu ariyor: <span className="font-mono text-amber-400">product:99999</span>.
-              Cache'de yok, DB'de de yok. Her seferinde bos yere DB sorgusu yapiliyor!
+              Kullanıcılar var olmayan bir ürünu ariyor: <span className="font-mono text-amber-400">product:99999</span>.
+              Cache'de yok, DB'de de yok. Her seferinde bos yere DB sorgusu yapılıyor!
             </p>
           </div>
         </div>
@@ -400,7 +400,7 @@ export default function CacheProblemsSection() {
         {/* Request count slider */}
         <div>
           <div className="flex justify-between items-center mb-1">
-            <label className="text-[10px] text-gray-500 uppercase tracking-wide">Istek Sayisi</label>
+            <label className="text-[10px] text-gray-500 uppercase tracking-wide">İstek Sayısı</label>
             <span className="text-xs font-mono text-amber-400 font-bold">{penCount}</span>
           </div>
           <input
@@ -435,7 +435,7 @@ export default function CacheProblemsSection() {
             />
           </button>
           <span className={`text-[10px] font-bold ${penNullCache ? 'text-green-400' : 'text-gray-500'}`}>
-            {penNullCache ? 'ACIK' : 'KAPALI'}
+            {penNullCache ? 'AÇIK' : 'KAPALI'}
           </span>
         </div>
 
@@ -445,7 +445,7 @@ export default function CacheProblemsSection() {
           loading={penLoading}
           variant={penNullCache ? 'success' : 'danger'}
         >
-          Calistir
+          Çalıştır
         </ActionButton>
       </div>
 
@@ -454,7 +454,7 @@ export default function CacheProblemsSection() {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <ComparisonPanel
             leftTitle="Null Cache KAPALI"
-            rightTitle="Null Cache ACIK"
+            rightTitle="Null Cache AÇIK"
             leftMetrics={penComparison.left}
             rightMetrics={penComparison.right}
           />

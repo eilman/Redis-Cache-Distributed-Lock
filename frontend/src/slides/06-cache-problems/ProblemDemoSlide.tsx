@@ -109,7 +109,7 @@ function StampedeTab() {
           </select>
         </div>
         <div className="flex items-center gap-3 flex-1 min-w-[200px]">
-          <label className="text-xs text-gray-400 whitespace-nowrap">Es Zamanli Istek:</label>
+          <label className="text-xs text-gray-400 whitespace-nowrap">Eş Zamanlı İstek:</label>
           <input
             type="range"
             min={2} max={50}
@@ -130,11 +130,11 @@ function StampedeTab() {
         <div className="glass p-4 space-y-3 border border-red-500/20">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Badge variant="red">Korumasiz</Badge>
+              <Badge variant="red">Korumasız</Badge>
               <span className="text-[10px] text-gray-500">Lock yok</span>
             </div>
             <Button onClick={runUnprotected} loading={loading === 'unprotected'} size="sm" variant="danger">
-              Calistir
+              Çalıştır
             </Button>
           </div>
           {unprotectedResult && <StampedeResultView result={unprotectedResult} maxDuration={maxDuration} bad />}
@@ -151,7 +151,7 @@ function StampedeTab() {
               <span className="text-[10px] text-gray-500">Distributed Lock</span>
             </div>
             <Button onClick={runProtected} loading={loading === 'protected'} size="sm">
-              Calistir
+              Çalıştır
             </Button>
           </div>
           {protectedResult && <StampedeResultView result={protectedResult} maxDuration={maxDuration} bad={false} />}
@@ -204,7 +204,7 @@ function StampedeResultView({ result, maxDuration, bad }: { result: StampedeResu
 
       {/* Timeline */}
       <div className="space-y-0.5 max-h-[180px] overflow-y-auto pr-1">
-        <div className="text-[10px] text-gray-500 mb-1">Istek Timeline</div>
+        <div className="text-[10px] text-gray-500 mb-1">İstek Timeline</div>
         {result.details.map((d, i) => {
           const isDb = d.source === 'DB' || d.source?.startsWith('DB')
           const label = d.source === 'DB' ? 'DB' : d.source?.includes('lock holder') ? 'DB(lock)' : 'CACHE'
@@ -290,7 +290,7 @@ function PenetrationTab() {
             />
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-xs text-gray-400">Istek:</label>
+            <label className="text-xs text-gray-400">İstek:</label>
             <select
               value={requestCount}
               onChange={e => setRequestCount(Number(e.target.value))}
@@ -312,7 +312,7 @@ function PenetrationTab() {
                   !useNullCaching ? 'bg-red-500/30 text-red-400' : 'text-gray-500 hover:text-gray-300'
                 }`}
               >
-                Korumasiz
+                Korumasız
               </button>
               <button
                 onClick={() => setUseNullCaching(true)}
@@ -325,7 +325,7 @@ function PenetrationTab() {
             </div>
           </div>
           <div className="flex gap-2 ml-auto">
-            <Button onClick={runDemo} loading={loading === 'single'} size="sm">Calistir</Button>
+            <Button onClick={runDemo} loading={loading === 'single'} size="sm">Çalıştır</Button>
             <Button onClick={runComparison} loading={loading === 'compare'} size="sm" variant="secondary">Karsilastir</Button>
           </div>
         </div>
@@ -338,7 +338,7 @@ function PenetrationTab() {
       {comparison && (
         <div className="grid grid-cols-2 gap-3">
           <div className="glass p-3 border border-red-500/20 space-y-2">
-            <Badge variant="red">Korumasiz</Badge>
+            <Badge variant="red">Korumasız</Badge>
             <PenetrationResultView result={comparison.without} compact />
           </div>
           <div className="glass p-3 border border-green-500/20 space-y-2">
@@ -466,7 +466,7 @@ function StaleDataTab() {
     setCurrentStep(0)
   }, [])
 
-  const steps = ['Cache Yaz', 'DB Guncelle', 'Cache Oku', 'Stale!', 'Fix']
+  const steps = ['Cache Yaz', 'DB Güncelle', 'Cache Oku', 'Stale!', 'Fix']
 
   return (
     <div className="space-y-4">
@@ -635,7 +635,7 @@ function StaleDataTab() {
             <p className="text-green-400 font-semibold">Cache Invalidate Edildi</p>
             <p className="text-gray-400 mt-1">
               Cache temizlendi ve DB'den güncel veri ile yeniden dolduruldu.
-              Artik kullanıcı dogru fiyati (<span className="text-green-400 font-bold">{newPrice} TL</span>) goruyor.
+              Artik kullanıcı dogru fiyatı (<span className="text-green-400 font-bold">{newPrice} TL</span>) goruyor.
             </p>
           </div>
         </motion.div>

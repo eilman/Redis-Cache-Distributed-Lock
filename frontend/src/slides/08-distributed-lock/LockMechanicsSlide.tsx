@@ -504,7 +504,7 @@ export default function LockMechanicsSlide() {
           <span className="text-gray-600 font-mono">t1-t2</span>
           <span className="text-gray-400">
             <span className="text-indigo-400">Pod-A</span> ve <span className="text-orange-400">Pod-B</span> ayni
-            anda <span className="text-white font-mono">GET</span> yapar &rarr; ikisi de "key yok" gorur
+            anda <span className="text-white font-mono">GET</span> yapar &rarr; ikisi de "key yok" görür
           </span>
           <span className="text-gray-600 font-mono">t3-t4</span>
           <span className="text-gray-400">

@@ -83,7 +83,7 @@ export default function MonitoringSection() {
 
       const ms = Math.round(performance.now() - start)
       pushLog('SNAPSHOT', `Hit: ${newSnapshot.hitCount}, Miss: ${newSnapshot.missCount}, Rate: ${newSnapshot.hitRate.toFixed(1)}%`, 'info', ms)
-      addLog('monitoring', 'info', `Metrik snapshot alindi (${ms}ms)`, ms)
+      addLog('monitoring', 'info', `Metrik snapshot alındı (${ms}ms)`, ms)
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
       pushLog('SNAPSHOT', `HATA: ${msg}`, 'error')
@@ -167,11 +167,11 @@ export default function MonitoringSection() {
         variants={item}
         className="glass p-4 border border-blue-500/20 bg-blue-500/5 rounded-xl"
       >
-        <h3 className="text-sm font-bold text-blue-400 mb-1">Senaryo: Black Friday Izleme</h3>
+        <h3 className="text-sm font-bold text-blue-400 mb-1">Senaryo: Black Friday İzleme</h3>
         <p className="text-xs text-gray-400 leading-relaxed">
           Black Friday devam ediyor. <span className="text-blue-300 font-semibold">Ops ekibi</span> Redis
-          performansini <span className="text-amber-400 font-semibold">canli</span> izliyor. Hit rate
-          dusuyor mu? Latency artiyor mu?
+          performansini <span className="text-amber-400 font-semibold">canlı</span> izliyor. Hit rate
+          düşüyor mu? Latency artiyor mu?
         </p>
       </motion.div>
 
@@ -228,13 +228,13 @@ export default function MonitoringSection() {
       <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Hit/Miss Pie Chart */}
         <div className="glass p-4 rounded-xl">
-          <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">Hit / Miss Dagilimi</h4>
+          <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">Hit / Miss Dağılımı</h4>
           <HitMissChart hits={snapshot.hitCount} misses={snapshot.missCount} />
         </div>
 
         {/* Latency Area Chart */}
         <div className="glass p-4 rounded-xl">
-          <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">Latency Gecmisi</h4>
+          <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">Latency Geçmişi</h4>
           <LatencyChart data={latencyHistory} />
         </div>
       </motion.div>
@@ -246,7 +246,7 @@ export default function MonitoringSection() {
             <svg className="w-3.5 h-3.5 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
             </svg>
-            Prometheus Ozeti
+            Prometheus Özeti
           </h4>
 
           {/* Percentile Table */}
@@ -281,7 +281,7 @@ export default function MonitoringSection() {
 
           {/* Total Operations */}
           <div className="flex items-center justify-between px-1">
-            <span className="text-[10px] text-gray-500 uppercase font-semibold">Toplam Islem</span>
+            <span className="text-[10px] text-gray-500 uppercase font-semibold">Toplam İşlem</span>
             <span className="text-sm font-bold font-mono text-cyan-400">{prometheus.totalOperations.toLocaleString()}</span>
           </div>
         </motion.div>
@@ -313,7 +313,7 @@ export default function MonitoringSection() {
           }`}
         >
           <span className={`w-2 h-2 rounded-full ${autoRefresh ? 'bg-green-500 animate-pulse' : 'bg-gray-600'}`} />
-          Auto-Refresh {autoRefresh ? 'ACIK' : 'KAPALI'}
+          Auto-Refresh {autoRefresh ? 'AÇIK' : 'KAPALI'}
         </motion.button>
 
         {autoRefresh && (

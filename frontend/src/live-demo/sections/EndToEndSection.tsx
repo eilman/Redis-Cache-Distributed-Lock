@@ -75,13 +75,13 @@ export default function EndToEndSection() {
       setResult(0, { success: true, message: `Cache ${src}`, detail: `${PRODUCT_NAME} bulundu (${ms}ms)` })
       incrementMetric('totalRequests')
       incrementMetric(src === 'HIT' ? 'cacheHits' : 'cacheMisses')
-      pushLog('Urun Arama', `${src} - ${PRODUCT_NAME} (${ms}ms)`, src === 'HIT' ? 'hit' : 'miss', ms)
-      addLog('e2e-flow', src === 'HIT' ? 'hit' : 'miss', `Urun arama: ${PRODUCT_NAME} ${src}`, ms)
+      pushLog('Ürün Arama', `${src} - ${PRODUCT_NAME} (${ms}ms)`, src === 'HIT' ? 'hit' : 'miss', ms)
+      addLog('e2e-flow', src === 'HIT' ? 'hit' : 'miss', `Ürün arama: ${PRODUCT_NAME} ${src}`, ms)
       setE2eProgress(1)
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
       setResult(0, { success: false, message: 'Hata', detail: msg })
-      pushLog('Urun Arama', `HATA: ${msg}`, 'error')
+      pushLog('Ürün Arama', `HATA: ${msg}`, 'error')
     } finally {
       setLoadingStep(null)
     }
@@ -106,13 +106,13 @@ export default function EndToEndSection() {
       })
       incrementMetric('totalRequests')
       incrementMetric(src === 'HIT' ? 'cacheHits' : 'cacheMisses')
-      pushLog('Urun Detay', `${name} - ${Number(price).toLocaleString('tr-TR')} TL (${src})`, src === 'HIT' ? 'hit' : 'miss', ms)
+      pushLog('Ürün Detay', `${name} - ${Number(price).toLocaleString('tr-TR')} TL (${src})`, src === 'HIT' ? 'hit' : 'miss', ms)
       addLog('e2e-flow', 'info', `Read-Through: ${name}`, ms)
       setE2eProgress(2)
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
       setResult(1, { success: false, message: 'Hata', detail: msg })
-      pushLog('Urun Detay', `HATA: ${msg}`, 'error')
+      pushLog('Ürün Detay', `HATA: ${msg}`, 'error')
     } finally {
       setLoadingStep(null)
     }
@@ -149,12 +149,12 @@ export default function EndToEndSection() {
 
       const acquired = data?.locked ?? data?.success ?? false
       if (acquired) {
-        setResult(3, { success: true, message: 'Stok kilitlendi', detail: `Envanter kilidi alindi (${ms}ms)` })
-        pushLog('Stok Kontrol', `Envanter kilidi alindi (${ms}ms)`, 'lock', ms)
+        setResult(3, { success: true, message: 'Stok kilitlendi', detail: `Envanter kilidi alındı (${ms}ms)` })
+        pushLog('Stok Kontrol', `Envanter kilidi alındı (${ms}ms)`, 'lock', ms)
         addLog('e2e-flow', 'lock', `Stok kilidi: inventory:product:${PRODUCT_ID}`, ms)
       } else {
-        setResult(3, { success: false, message: 'Kilit alinamadi', detail: data?.message ?? 'Stok zaten kilitli' })
-        pushLog('Stok Kontrol', 'Kilit alinamadi', 'error', ms)
+        setResult(3, { success: false, message: 'Kilit alınamadı', detail: data?.message ?? 'Stok zaten kilitli' })
+        pushLog('Stok Kontrol', 'Kilit alınamadı', 'error', ms)
       }
       incrementMetric('totalRequests')
       setE2eProgress(4)
@@ -177,19 +177,19 @@ export default function EndToEndSection() {
 
       const acquired = data?.locked ?? data?.success ?? false
       if (acquired) {
-        setResult(4, { success: true, message: 'Odeme kilidi alindi', detail: `Redlock ile guvenli odeme (${ms}ms)` })
-        pushLog('Odeme', `Redlock kilidi alindi (${ms}ms)`, 'lock', ms)
+        setResult(4, { success: true, message: 'Ödeme kilidi alındı', detail: `Redlock ile güvenli ödeme (${ms}ms)` })
+        pushLog('Ödeme', `Redlock kilidi alındı (${ms}ms)`, 'lock', ms)
         addLog('e2e-flow', 'lock', 'Redlock: payment:order:1001', ms)
       } else {
-        setResult(4, { success: false, message: 'Odeme basarisiz', detail: data?.message ?? 'Quorum saglanamadi' })
-        pushLog('Odeme', 'Redlock basarisiz', 'error', ms)
+        setResult(4, { success: false, message: 'Ödeme başarısız', detail: data?.message ?? 'Quorum sağlanamadı' })
+        pushLog('Ödeme', 'Redlock başarısız', 'error', ms)
       }
       incrementMetric('totalRequests')
       setE2eProgress(5)
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
       setResult(4, { success: false, message: 'Hata', detail: msg })
-      pushLog('Odeme', `HATA: ${msg}`, 'error')
+      pushLog('Ödeme', `HATA: ${msg}`, 'error')
     } finally {
       setLoadingStep(null)
     }
@@ -201,11 +201,11 @@ export default function EndToEndSection() {
       incrementMetric('ordersProcessed')
       setResult(5, {
         success: true,
-        message: 'Siparis onaylandi!',
-        detail: `Siparis #1001 - ${PRODUCT_NAME} - ${PRODUCT_PRICE.toLocaleString('tr-TR')} TL`,
+        message: 'Sipariş onaylandı!',
+        detail: `Sipariş #1001 - ${PRODUCT_NAME} - ${PRODUCT_PRICE.toLocaleString('tr-TR')} TL`,
       })
-      pushLog('Siparis Onay', `Siparis #1001 tamamlandi`, 'success')
-      addLog('e2e-flow', 'success', `Siparis onaylandi: #1001 - ${PRODUCT_NAME}`)
+      pushLog('Sipariş Onay', `Sipariş #1001 tamamlandı`, 'success')
+      addLog('e2e-flow', 'success', `Sipariş onaylandı: #1001 - ${PRODUCT_NAME}`)
       setE2eProgress(6)
       markCompleted('e2e-flow')
       setShowCelebration(true)
@@ -213,7 +213,7 @@ export default function EndToEndSection() {
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
       setResult(5, { success: false, message: 'Hata', detail: msg })
-      pushLog('Siparis Onay', `HATA: ${msg}`, 'error')
+      pushLog('Sipariş Onay', `HATA: ${msg}`, 'error')
     } finally {
       setLoadingStep(null)
     }
@@ -221,7 +221,7 @@ export default function EndToEndSection() {
 
   const stepHandlers = [handleStep0, handleStep1, handleStep2, handleStep3, handleStep4, handleStep5]
 
-  const stepButtonLabels = ['Urun Ara', 'Detay Goruntule', 'Sepete Ekle', 'Stok Kontrol', 'Ode', 'Siparisi Onayla']
+  const stepButtonLabels = ['Ürün Ara', 'Detay Görüntüle', 'Sepete Ekle', 'Stok Kontrol', 'Ode', 'Siparişi Onayla']
 
   const handleReset = () => {
     setE2eProgress(0)
@@ -240,11 +240,11 @@ export default function EndToEndSection() {
         variants={item}
         className="glass p-4 border border-emerald-500/20 bg-emerald-500/5 rounded-xl"
       >
-        <h3 className="text-sm font-bold text-emerald-400 mb-1">Senaryo: Uc Uca Siparis Akisi</h3>
+        <h3 className="text-sm font-bold text-emerald-400 mb-1">Senaryo: Uç Uca Sipariş Akışı</h3>
         <p className="text-xs text-gray-400 leading-relaxed">
-          Bir musterinin <span className="text-emerald-300 font-semibold">TechMart</span>'a girip siparis
-          tamamlamasina kadar <span className="text-amber-400 font-semibold">tum adimlar</span>. Her
-          adimda farkli bir Redis pattern devreye girer.
+          Bir müşterinin <span className="text-emerald-300 font-semibold">TechMart</span>'a girip sipariş
+          tamamlamasina kadar <span className="text-amber-400 font-semibold">tüm adımlar</span>. Her
+          adımda farklı bir Redis pattern devreye girer.
         </p>
       </motion.div>
 
@@ -374,16 +374,16 @@ export default function EndToEndSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </motion.div>
-            <h3 className="text-lg font-bold text-emerald-400">Siparis Tamamlandi!</h3>
+            <h3 className="text-lg font-bold text-emerald-400">Sipariş Tamamlandı!</h3>
             <p className="text-xs text-gray-400">
-              Tum Redis pattern'leri basariyla uygulandi.
+              Tüm Redis pattern'leri başarıyla uygulandi.
             </p>
           </div>
 
           {/* Summary Metrics */}
           <div className="grid grid-cols-3 gap-2">
             <div className="bg-black/20 rounded-lg p-3 text-center">
-              <p className="text-[9px] text-gray-500 uppercase">Toplam Istek</p>
+              <p className="text-[9px] text-gray-500 uppercase">Toplam İstek</p>
               <p className="text-lg font-bold font-mono text-cyan-400">{globalMetrics.totalRequests}</p>
             </div>
             <div className="bg-black/20 rounded-lg p-3 text-center">
@@ -391,7 +391,7 @@ export default function EndToEndSection() {
               <p className="text-lg font-bold font-mono text-green-400">{globalMetrics.cacheHits}</p>
             </div>
             <div className="bg-black/20 rounded-lg p-3 text-center">
-              <p className="text-[9px] text-gray-500 uppercase">Siparis</p>
+              <p className="text-[9px] text-gray-500 uppercase">Sipariş</p>
               <p className="text-lg font-bold font-mono text-emerald-400">{globalMetrics.ordersProcessed}</p>
             </div>
           </div>
@@ -423,7 +423,7 @@ export default function EndToEndSection() {
             </svg>
           }
         >
-          Bastan Baslat
+          Baştan Başlat
         </ActionButton>
       </motion.div>
 

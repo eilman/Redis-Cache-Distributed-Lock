@@ -185,7 +185,7 @@ export default function MetricsOverviewSlide() {
             <p className="text-sm font-semibold" style={{ color: '#b040ff' }}>Alerting Kuralları</p>
             <p className="text-xs text-gray-400 mt-1">
               Hit rate %90 altına düştüğünde, eviction sayısı arttığında ve p99 latency 10ms üzerine
-              çıktığında alarm oluşturun. Prometheus + Grafana ile Redis Exporter kullanarak
+              çıktığında alarm oluştürün. Prometheus + Grafana ile Redis Exporter kullanarak
               bu metrikleri kolayca izleyebilirsiniz.
             </p>
           </div>

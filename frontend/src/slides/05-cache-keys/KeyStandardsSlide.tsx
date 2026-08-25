@@ -29,7 +29,7 @@ const companyExamples = [
     company: 'Uber',
     pattern: 'surge:{cityId}:zone:{zoneId}',
     real: 'surge:istanbul:zone:kadikoy',
-    why: 'Surge pricing — coğrafi partition ile hızlı lookup, kısa TTL',
+    why: 'Surge priçing — coğrafi partition ile hızlı lookup, kısa TTL',
     color: 'text-green-400',
     border: 'border-green-500/30',
   },

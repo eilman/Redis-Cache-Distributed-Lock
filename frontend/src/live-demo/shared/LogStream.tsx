@@ -44,7 +44,7 @@ export default function LogStream({ logs, maxHeight = 200, onClear }: Props) {
   return (
     <div className="glass p-3 space-y-2">
       <div className="flex items-center justify-between">
-        <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Islem Loglari</h4>
+        <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">İşlem Loglari</h4>
         {onClear && logs.length > 0 && (
           <button onClick={onClear} className="text-[10px] text-gray-600 hover:text-gray-400 transition-colors">
             Temizle
@@ -53,7 +53,7 @@ export default function LogStream({ logs, maxHeight = 200, onClear }: Props) {
       </div>
       <div ref={scrollRef} className="space-y-1 overflow-y-auto" style={{ maxHeight }}>
         {logs.length === 0 ? (
-          <p className="text-[11px] text-gray-600 text-center py-4">Henuz islem yok. Bir demo baslatin.</p>
+          <p className="text-[11px] text-gray-600 text-center py-4">Henuz işlem yok. Bir demo başlatin.</p>
         ) : (
           logs.map((log, i) => (
             <motion.div

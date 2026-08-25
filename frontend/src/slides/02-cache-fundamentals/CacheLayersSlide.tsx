@@ -16,7 +16,7 @@ const layers = [
     latency: '~1ms',
     tech: 'Redis / Redisson',
     color: '#4090ff',
-    description: "Tum instance'lar arası paylaşımlı. Netflix 75B+ key tutuyor. Network hop var ama çok hızlı.",
+    description: "Tüm instance'lar arası paylaşımlı. Netflix 75B+ key tutuyor. Network hop var ama çok hızlı.",
     width: '80%',
   },
   {

@@ -24,16 +24,16 @@ export const flashSaleProduct: Product = {
 }
 
 export const ttlScenarios = [
-  { label: 'Doviz Kuru', ttl: 10, desc: 'Anlik degisebilir, cok kisa TTL', icon: '$', color: 'amber' },
-  { label: 'Urun Fiyati', ttl: 60, desc: 'Makul gecikme kabul edilebilir', icon: 'T', color: 'cyan' },
+  { label: 'Döviz Kuru', ttl: 10, desc: 'Anlık değişebilir, cok kisa TTL', icon: '$', color: 'amber' },
+  { label: 'Ürün Fiyatı', ttl: 60, desc: 'Makul gecikme kabul edilebilir', icon: 'T', color: 'cyan' },
   { label: 'Kategori Listesi', ttl: 300, desc: 'Nadiren degisir, uzun TTL', icon: 'L', color: 'green' },
 ]
 
 export const e2eSteps = [
-  { label: 'Urun Arama', desc: 'Cache-Aside ile hizli arama', redis: 'Cache-Aside', icon: 'search' },
-  { label: 'Urun Detay', desc: 'Read-Through + TTL ile okuma', redis: 'Read-Through', icon: 'eye' },
-  { label: 'Sepete Ekle', desc: 'Session cache ile sepet yonetimi', redis: 'Session Cache', icon: 'cart' },
+  { label: 'Ürün Arama', desc: 'Cache-Aside ile hizli arama', redis: 'Cache-Aside', icon: 'search' },
+  { label: 'Ürün Detay', desc: 'Read-Through + TTL ile okuma', redis: 'Read-Through', icon: 'eye' },
+  { label: 'Sepete Ekle', desc: 'Session cache ile sepet yönetimi', redis: 'Session Cache', icon: 'cart' },
   { label: 'Stok Kontrol', desc: 'Distributed Lock ile envanter', redis: 'SET NX PX', icon: 'lock' },
-  { label: 'Odeme', desc: 'Redlock ile guvenli odeme', redis: 'Redlock', icon: 'credit-card' },
-  { label: 'Siparis Onay', desc: 'Write-Through + metrik kaydi', redis: 'Write-Through', icon: 'check' },
+  { label: 'Ödeme', desc: 'Redlock ile güvenli ödeme', redis: 'Redlock', icon: 'credit-card' },
+  { label: 'Sipariş Onay', desc: 'Write-Through + metrik kaydı', redis: 'Write-Through', icon: 'check' },
 ]

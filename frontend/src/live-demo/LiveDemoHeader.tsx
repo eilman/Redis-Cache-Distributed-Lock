@@ -35,7 +35,7 @@ export default function LiveDemoHeader() {
         <MetricPill label="Request" value={globalMetrics.totalRequests.toLocaleString()} color="text-cyan-400" />
         <MetricPill label="Hit Rate" value={`%${hitRate}`} color={hitRateColor} />
         <MetricPill label="Latency" value={`${globalMetrics.avgLatencyMs.toFixed(1)}ms`} color="text-blue-400" />
-        <MetricPill label="Siparis" value={globalMetrics.ordersProcessed.toString()} color="text-green-400" />
+        <MetricPill label="Sipariş" value={globalMetrics.ordersProcessed.toString()} color="text-green-400" />
       </div>
 
       {/* Cart + Close */}

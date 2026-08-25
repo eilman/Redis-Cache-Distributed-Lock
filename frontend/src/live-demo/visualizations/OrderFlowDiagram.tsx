@@ -27,7 +27,7 @@ const redisColors: Record<string, string> = {
 export default function OrderFlowDiagram({ currentStep, onStepClick }: Props) {
   return (
     <div className="glass p-3">
-      <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-3">Siparis Akisi</h4>
+      <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-3">Sipariş Akışı</h4>
       <div className="flex items-start gap-1 max-w-4xl mx-auto">
         {e2eSteps.map((step, i) => {
           const isCompleted = i < currentStep

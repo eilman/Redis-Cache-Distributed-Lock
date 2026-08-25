@@ -6,7 +6,7 @@ const takeaways = [
   { title: "Stampede'e karşı kilit kullanın", detail: "Sadece 1 istek DB'ye gitsin, diğerleri beklesin.", letter: 'S', color: '#6366f1' },
   { title: 'Null caching yapin', detail: "Olmayan veriler için de cache'e not düşün.", letter: 'N', color: '#b040ff' },
   { title: 'Redisson kullanın', detail: 'RLock, watchdog ve reentrant özellikleri hazir. Tekerlek icat etmeyin.', letter: 'R', color: '#a855f7' },
-  { title: 'Gösterge paneli kurun', detail: 'Hit rate, eviction, latency ve memory metriklerini sürekli izleyin.', letter: 'M', color: '#ff40a0' },
+  { title: 'Gösterge paneli kürün', detail: 'Hit rate, eviction, latency ve memory metriklerini sürekli izleyin.', letter: 'M', color: '#ff40a0' },
   { title: 'Fail-open strateji seçin', detail: 'Redis down olsa bile servis çalışmalı. Circuit breaker ile koruyun.', letter: 'F', color: '#06b6d4' },
 ]
 

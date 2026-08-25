@@ -475,7 +475,7 @@ export async function handleMockRequest(config: InternalAxiosRequestConfig): Pro
         status: 503,
         data: {
           error: 'ServiceUnavailableException: Redis connection failed',
-          message: 'Siparis REDDEDILDI - veri tutarliligi oncelikli',
+          message: 'Sipariş REDDEDİLDİ - veri tutarlılığı öncelikli',
           strategy: 'FAIL_CLOSE',
         },
       }

@@ -73,7 +73,7 @@ export default function TtlInvalidationSection() {
   const handleScenarioClick = (index: number) => {
     setActiveScenario(index)
     setTtl(ttlScenarios[index].ttl)
-    pushLog('SENARYO', `${ttlScenarios[index].label} secildi (TTL: ${ttlScenarios[index].ttl}s)`, 'info')
+    pushLog('SENARYO', `${ttlScenarios[index].label} seçildi (TTL: ${ttlScenarios[index].ttl}s)`, 'info')
   }
 
   // --- Countdown logic ---
@@ -135,7 +135,7 @@ export default function TtlInvalidationSection() {
     } catch (err) {
       setCacheState('ERROR')
       pushLog('SET', `HATA: ${err instanceof Error ? err.message : 'Bilinmeyen hata'}`, 'error')
-      addLog('ttl-invalidation', 'error', `SET basarisiz: ${key}`)
+      addLog('ttl-invalidation', 'error', `SET başarısız: ${key}`)
     } finally {
       setWriteLoading(false)
     }
@@ -161,13 +161,13 @@ export default function TtlInvalidationSection() {
       } else {
         setCacheState('MISS')
         incrementMetric('cacheMisses')
-        pushLog('GET', `${key} => MISS (key bulunamadi)`, 'miss', latency)
+        pushLog('GET', `${key} => MISS (key bulunamadı)`, 'miss', latency)
         addLog('ttl-invalidation', 'miss', `GET ${key} => MISS`, latency)
       }
     } catch (err) {
       setCacheState('ERROR')
       pushLog('GET', `HATA: ${err instanceof Error ? err.message : 'Bilinmeyen hata'}`, 'error')
-      addLog('ttl-invalidation', 'error', `GET basarisiz: ${key}`)
+      addLog('ttl-invalidation', 'error', `GET başarısız: ${key}`)
     } finally {
       setReadLoading(false)
     }
@@ -191,7 +191,7 @@ export default function TtlInvalidationSection() {
       addLog('ttl-invalidation', 'info', `DEL ${key}`, latency)
     } catch (err) {
       pushLog('DEL', `HATA: ${err instanceof Error ? err.message : 'Bilinmeyen hata'}`, 'error')
-      addLog('ttl-invalidation', 'error', `DEL basarisiz: ${key}`)
+      addLog('ttl-invalidation', 'error', `DEL başarısız: ${key}`)
     } finally {
       setDeleteLoading(false)
     }
@@ -227,19 +227,19 @@ export default function TtlInvalidationSection() {
         left: [
           { label: 'Strateji', value: 'Sabit TTL' },
           { label: 'TTL', value: `${ttl}s` },
-          { label: 'Stampede Riski', value: 'Yuksek' },
+          { label: 'Stampede Riski', value: 'Yüksek' },
           { label: 'Staleness', value: 'TTL kadar' },
         ],
         right: [
           { label: 'Strateji', value: strategy === 'dynamic' ? 'Dinamik TTL' : 'Jittered TTL' },
           { label: 'TTL', value: data?.ttl ? `${data.ttl}s` : `${ttl} +/- 15s` },
-          { label: 'Stampede Riski', value: strategy === 'jittered' ? 'Dusuk' : 'Orta' },
-          { label: 'Staleness', value: strategy === 'dynamic' ? 'Adaptif' : 'Dagitilmis' },
+          { label: 'Stampede Riski', value: strategy === 'jittered' ? 'Düşük' : 'Orta' },
+          { label: 'Staleness', value: strategy === 'dynamic' ? 'Adaptif' : 'Dağıtılmış' },
         ],
       })
     } catch (err) {
       pushLog('TTL', `HATA: ${err instanceof Error ? err.message : 'Bilinmeyen hata'}`, 'error')
-      addLog('ttl-invalidation', 'error', `TTL ${strategy} basarisiz`)
+      addLog('ttl-invalidation', 'error', `TTL ${strategy} başarısız`)
     } finally {
       setStrategyLoading(false)
     }
@@ -258,9 +258,9 @@ export default function TtlInvalidationSection() {
           <div>
             <h3 className="text-sm font-bold text-amber-400">Flash Sale Senaryosu</h3>
             <p className="text-[12px] text-gray-400 mt-1 leading-relaxed">
-              Flash Sale basladi! iPhone fiyati <span className="text-red-400 line-through">74.999₺</span>'den{' '}
-              <span className="text-green-400 font-bold">59.999₺</span>'ye dustu.
-              Eski fiyat ne kadar cache'de kalmali? Yanlis TTL = musteri yanlis fiyat gorur!
+              Flash Sale başladı! iPhone fiyatı <span className="text-red-400 line-through">74.999₺</span>'den{' '}
+              <span className="text-green-400 font-bold">59.999₺</span>'ye düştü.
+              Eski fiyat ne kadar cache'de kalmalı? Yanlis TTL = müşteri yanlis fiyat görür!
             </p>
           </div>
         </div>
@@ -269,7 +269,7 @@ export default function TtlInvalidationSection() {
       {/* ---- 2. Scenario Cards ---- */}
       <div>
         <h4 className="text-xs text-gray-500 uppercase tracking-wide font-semibold mb-2">
-          TTL Senaryolari
+          TTL Senaryoları
         </h4>
         <div className="grid grid-cols-3 gap-3">
           {ttlScenarios.map((s, i) => (
@@ -290,7 +290,7 @@ export default function TtlInvalidationSection() {
       <div className="grid grid-cols-2 gap-4">
         {/* Left: Input Panel */}
         <div className="p-4 rounded-2xl border border-cyan-500/20 bg-white/[0.02] backdrop-blur-md space-y-3">
-          <h4 className="text-xs text-gray-500 uppercase tracking-wide font-semibold">Cache Islemleri</h4>
+          <h4 className="text-xs text-gray-500 uppercase tracking-wide font-semibold">Cache İşlemleri</h4>
 
           {/* Key */}
           <div>
@@ -352,7 +352,7 @@ export default function TtlInvalidationSection() {
 
         {/* Right: Circular Countdown Timer */}
         <div className="p-4 rounded-2xl border border-cyan-500/20 bg-white/[0.02] backdrop-blur-md flex flex-col items-center justify-center gap-3">
-          <h4 className="text-xs text-gray-500 uppercase tracking-wide font-semibold">TTL Geri Sayim</h4>
+          <h4 className="text-xs text-gray-500 uppercase tracking-wide font-semibold">TTL Geri Sayım</h4>
 
           <div className="relative w-44 h-44">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 160 160">
@@ -421,7 +421,7 @@ export default function TtlInvalidationSection() {
                 )}
               </AnimatePresence>
               {countdown !== null && !expired && (
-                <span className="text-[10px] text-gray-500 mt-1">saniye kaldi</span>
+                <span className="text-[10px] text-gray-500 mt-1">saniye kaldı</span>
               )}
             </div>
           </div>
@@ -432,8 +432,8 @@ export default function TtlInvalidationSection() {
 
       {/* ---- Metrics ---- */}
       <div className="grid grid-cols-2 gap-3">
-        <MetricTicker value={writeCount} label="Yazma Islemi" color="text-green-400" size="sm" />
-        <MetricTicker value={readCount} label="Okuma Islemi" color="text-cyan-400" size="sm" />
+        <MetricTicker value={writeCount} label="Yazma İşlemi" color="text-green-400" size="sm" />
+        <MetricTicker value={readCount} label="Okuma İşlemi" color="text-cyan-400" size="sm" />
       </div>
 
       {/* ---- 4. Strategy Comparison ---- */}
@@ -442,7 +442,7 @@ export default function TtlInvalidationSection() {
           TTL Stratejileri
         </h4>
         <p className="text-[11px] text-gray-500">
-          Farkli TTL stratejilerini test edin ve sonuclarini karsilastirin.
+          Farklı TTL stratejilerini test edin ve sonuçlarıni karşılaştırın.
         </p>
 
         <div className="flex gap-2">

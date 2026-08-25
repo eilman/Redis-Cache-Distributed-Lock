@@ -37,7 +37,7 @@ export default function FailOpenCloseSlide() {
           <div className="space-y-2 text-xs">
             <p style={{ color: '#00f0ff' }} className="font-semibold">Avantajlar:</p>
             <p className="text-gray-400">+ Servis kesintisiz çalışır</p>
-            <p className="text-gray-400">+ Kullanici etkilenmez</p>
+            <p className="text-gray-400">+ Kullanıcı etkilenmez</p>
             <p style={{ color: '#ff40a0' }} className="font-semibold mt-2">Dezavantajlar:</p>
             <p className="text-gray-400">- DB yuku aniden artar</p>
             <p className="text-gray-400">- Latency yükselebilir</p>
@@ -71,7 +71,7 @@ export default function FailOpenCloseSlide() {
             <p className="text-gray-400">+ DB korunur</p>
             <p style={{ color: '#ff40a0' }} className="font-semibold mt-2">Dezavantajlar:</p>
             <p className="text-gray-400">- Servis kesintisi</p>
-            <p className="text-gray-400">- Kullanici etkilenir</p>
+            <p className="text-gray-400">- Kullanıcı etkilenir</p>
           </div>
           <div className="rounded-lg p-3 text-xs font-mono" style={{ background: 'rgba(255,64,160,0.06)', color: '#ff40a0', border: '1px solid rgba(255,64,160,0.15)' }}>
             try {'{'} return cache.get(key); {'}'}<br/>

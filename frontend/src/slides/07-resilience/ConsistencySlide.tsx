@@ -37,7 +37,7 @@ export default function ConsistencySlide() {
       >
         <p className="text-sm text-gray-300">
           <span style={{ color: '#4090ff' }} className="font-semibold">E-commerce'de stok güncelleniyor:</span> Redis'teki cache ve PostgreSQL'deki gerçek veri
-          aynı anda güncel olmalı. Birini güncelleyip diğeri başarısız olursa? Kullanici stokta olmayan urunu satin alabilir.
+          aynı anda güncel olmalı. Birini güncelleyip diğeri başarısız olursa? Kullanıcı stokta olmayan ürünu satın alabilir.
         </p>
       </motion.div>
 

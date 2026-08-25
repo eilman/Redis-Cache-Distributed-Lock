@@ -11,9 +11,9 @@ export default function LockFlowDiagram() {
 
   const steps = [
     { label: 'SET lock NX PX 10000', desc: 'Kilit alma istegi', color: '#00d4ff' },
-    { label: 'OK (acquired)', desc: 'Kilit alindi', color: '#00e68a' },
-    { label: 'Do work...', desc: 'Is yapiliyor', color: '#a855f7' },
-    { label: 'GET lock (verify owner)', desc: 'Sahiplik dogrulama', color: '#3b82f6' },
+    { label: 'OK (acquired)', desc: 'Kilit alındı', color: '#00e68a' },
+    { label: 'Do work...', desc: 'Is yapılıyor', color: '#a855f7' },
+    { label: 'GET lock (verify owner)', desc: 'Sahiplik doğrulama', color: '#3b82f6' },
     { label: 'DEL lock (if owner)', desc: 'Kilidi serbest bırak', color: '#f87171' },
     { label: 'Released', desc: 'Kilit serbest', color: '#00e68a' },
   ]

@@ -21,7 +21,7 @@ const segmentColors = {
   db_query: { bg: 'bg-amber-500', label: 'DB Sorgu' },
   lock_wait: { bg: 'bg-purple-400', label: 'Lock Bekleme' },
   lock_held: { bg: 'bg-purple-600', label: 'Lock Tutma' },
-  processing: { bg: 'bg-green-500', label: 'Islem' },
+  processing: { bg: 'bg-green-500', label: 'İşlem' },
   error: { bg: 'bg-red-500', label: 'Hata' },
 }
 

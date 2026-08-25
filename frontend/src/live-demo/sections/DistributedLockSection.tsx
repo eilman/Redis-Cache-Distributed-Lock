@@ -7,7 +7,7 @@ import ActionButton from '../shared/ActionButton'
 import LogStream, { LogEntry } from '../shared/LogStream'
 import MiniCodeBlock from '../shared/MiniCodeBlock'
 import RequestTimeline, { TimelineEntry } from '../visualizations/RequestTimeline'
-import EcommerceFlowDiagram from '../visualizations/EcommerceFlowDiagram'
+import LockAcquireFlowDiagram from '../visualizations/LockAcquireFlowDiagram'
 import Tabs from '../../components/ui/Tabs'
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } }
@@ -21,11 +21,11 @@ const LOCK_NAME = 'inventory:product:42'
    State Machine Colors
    ==================================================================== */
 const stateConfig: Record<LockMachineState, { label: string; color: string; border: string; bg: string; text: string }> = {
-  IDLE:     { label: 'Bosta',       color: '#6b7280', border: 'border-gray-500/40', bg: 'bg-gray-500/10', text: 'text-gray-400' },
+  IDLE:     { label: 'Boşta',       color: '#6b7280', border: 'border-gray-500/40', bg: 'bg-gray-500/10', text: 'text-gray-400' },
   WAITING:  { label: 'Bekliyor',    color: '#f59e0b', border: 'border-amber-500/40', bg: 'bg-amber-500/10', text: 'text-amber-400' },
   LOCKED:   { label: 'Kilitli',     color: '#a855f7', border: 'border-purple-500/40', bg: 'bg-purple-500/10', text: 'text-purple-400' },
   RELEASED: { label: 'Serbest',     color: '#22c55e', border: 'border-green-500/40', bg: 'bg-green-500/10', text: 'text-green-400' },
-  EXPIRED:  { label: 'Suresi Doldu', color: '#ef4444', border: 'border-red-500/40', bg: 'bg-red-500/10', text: 'text-red-400' },
+  EXPIRED:  { label: 'Süresi Doldu', color: '#ef4444', border: 'border-red-500/40', bg: 'bg-red-500/10', text: 'text-red-400' },
 }
 
 const machineStates: LockMachineState[] = ['IDLE', 'WAITING', 'LOCKED', 'RELEASED']
@@ -104,12 +104,12 @@ function LockMechanismTab() {
         setOwnerUuid(uuid)
         setMachineState('LOCKED')
         startLeaseTimer(leaseMs)
-        pushLog('ACQUIRE', `Kilit alindi (owner: ${uuid})`, 'lock', ms)
-        addLog('distributed-lock', 'lock', `Kilit alindi: ${LOCK_NAME}`, ms)
+        pushLog('ACQUIRE', `Kilit alındı (owner: ${uuid})`, 'lock', ms)
+        addLog('distributed-lock', 'lock', `Kilit alındı: ${LOCK_NAME}`, ms)
       } else {
         setMachineState('IDLE')
-        pushLog('ACQUIRE', data?.message ?? 'Kilit alinamadi', 'error', ms)
-        addLog('distributed-lock', 'error', 'Kilit alinamadi', ms)
+        pushLog('ACQUIRE', data?.message ?? 'Kilit alınamadı', 'error', ms)
+        addLog('distributed-lock', 'error', 'Kilit alınamadı', ms)
       }
       incrementMetric('totalRequests')
     } catch (err: unknown) {
@@ -131,8 +131,8 @@ function LockMechanismTab() {
       if (timerRef.current) clearInterval(timerRef.current)
       setRemainingMs(0)
       setMachineState('RELEASED')
-      pushLog('RELEASE', 'Kilit serbest birakildi', 'success', ms)
-      addLog('distributed-lock', 'success', `Kilit birakildi: ${LOCK_NAME}`, ms)
+      pushLog('RELEASE', 'Kilit serbest bırakıldı', 'success', ms)
+      addLog('distributed-lock', 'success', `Kilit bırakıldı: ${LOCK_NAME}`, ms)
       setOwnerUuid(null)
       incrementMetric('totalRequests')
       markCompleted('distributed-lock')
@@ -183,7 +183,7 @@ function LockMechanismTab() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
         </svg>
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Kilit Adi</p>
+          <p className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Kilit Adı</p>
           <p className="text-sm text-purple-300 font-mono truncate">{LOCK_NAME}</p>
         </div>
       </motion.div>
@@ -191,7 +191,7 @@ function LockMechanismTab() {
       {/* Lease Time Slider */}
       <motion.div variants={item} className="glass p-3 rounded-xl space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Lease Suresi</span>
+          <span className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Lease Süresi</span>
           <span className="text-sm font-bold font-mono text-purple-400">{leaseSeconds}s</span>
         </div>
         <input
@@ -236,7 +236,7 @@ function LockMechanismTab() {
             </svg>
           }
         >
-          Kilidi Birak
+          Kilidi Bırak
         </ActionButton>
 
         <ActionButton
@@ -249,7 +249,7 @@ function LockMechanismTab() {
             </svg>
           }
         >
-          Durumu Gor
+          Durumu Gör
         </ActionButton>
       </motion.div>
 
@@ -337,7 +337,7 @@ function LockMechanismTab() {
               fill="rgba(255,255,255,0.3)"
               fontSize="10"
             >
-              {isLocked ? 'saniye' : 'bosta'}
+              {isLocked ? 'saniye' : 'boşta'}
             </text>
           </svg>
         </div>
@@ -351,7 +351,7 @@ function LockMechanismTab() {
               <p className="text-[11px] text-purple-300 font-mono truncate">{ownerUuid ?? '—'}</p>
             </div>
             <div>
-              <p className="text-[9px] text-gray-600 uppercase">Kalan Sure</p>
+              <p className="text-[9px] text-gray-600 uppercase">Kalan Süre</p>
               <p className="text-sm font-bold font-mono text-purple-400">
                 {isLocked ? `${(remainingMs / 1000).toFixed(1)}s` : '—'}
               </p>
@@ -369,9 +369,9 @@ function LockMechanismTab() {
       {/* Ecommerce Flow Diagram */}
       <motion.div variants={item} className="glass p-4 rounded-xl">
         <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">
-          Kilit Edinme Akisi
+          Kilit Edinme Akışı
         </h4>
-        <EcommerceFlowDiagram mode="lock-acquire" />
+        <LockAcquireFlowDiagram />
       </motion.div>
 
       {/* Redis Command */}
@@ -431,7 +431,7 @@ function ConcurrentBuyersTab() {
       const data = res.data
 
       incrementMetric('totalRequests')
-      addLog('distributed-lock', 'info', `${buyerCount} es zamanli kilit yarisi tamamlandi`, ms)
+      addLog('distributed-lock', 'info', `${buyerCount} eş zamanlı kilit yarışı tamamlandı`, ms)
 
       // Parse response into timeline entries
       const results: Array<{
@@ -448,7 +448,7 @@ function ConcurrentBuyersTab() {
 
       let foundWinner = false
       const entries: TimelineEntry[] = results.map((r, i) => {
-        const label = r.threadName ?? `Musteri-${i + 1}`
+        const label = r.threadName ?? `Müşteri-${i + 1}`
         const acquired = r.acquired ?? r.success ?? r.lockAcquired ?? false
         const waitMs = r.waitTimeMs ?? 0
         const holdMs = r.holdTimeMs ?? r.processingTimeMs ?? 0
@@ -489,7 +489,7 @@ function ConcurrentBuyersTab() {
       // If we got no parsed results, build a simple fallback timeline
       if (entries.length === 0) {
         for (let i = 0; i < buyerCount; i++) {
-          const label = `Musteri-${i + 1}`
+          const label = `Müşteri-${i + 1}`
           if (i === 0) {
             setWinnerLabel(label)
             entries.push({
@@ -533,7 +533,7 @@ function ConcurrentBuyersTab() {
       {/* Buyer Count Slider */}
       <motion.div variants={item} className="glass p-3 rounded-xl space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Es Zamanli Musteri Sayisi</span>
+          <span className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">Eş Zamanlı Müşteri Sayısı</span>
           <span className="text-sm font-bold font-mono text-purple-400">{buyerCount}</span>
         </div>
         <input
@@ -563,7 +563,7 @@ function ConcurrentBuyersTab() {
             </svg>
           }
         >
-          Yarisi Baslat ({buyerCount} musteri)
+          Yarışı Başlat ({buyerCount} müşteri)
         </ActionButton>
       </motion.div>
 
@@ -592,7 +592,7 @@ function ConcurrentBuyersTab() {
         <motion.div variants={item}>
           <RequestTimeline
             entries={timeline}
-            title="Musteri Kilit Yarisi Zamanlama Cizelgesi"
+            title="Müşteri Kilit Yarışı Zamanlama Çizelgesi"
           />
         </motion.div>
       )}
@@ -616,11 +616,11 @@ export default function DistributedLockSection() {
         variants={item}
         className="glass p-4 border border-purple-500/20 bg-purple-500/5 rounded-xl"
       >
-        <h3 className="text-sm font-bold text-purple-400 mb-1">Senaryo: Son Urun Icin Yaris</h3>
+        <h3 className="text-sm font-bold text-purple-400 mb-1">Senaryo: Son Ürün İçin Yaris</h3>
         <p className="text-xs text-gray-400 leading-relaxed">
-          Stokta son <span className="text-amber-400 font-semibold">1 RTX 5090</span> kaldi.
-          Ayni anda <span className="text-purple-300 font-semibold">5 musteri</span> "Satin Al"
-          butonuna basiyor... Distributed Lock olmadan <span className="text-red-400">oversell</span> riski!
+          Stokta son <span className="text-amber-400 font-semibold">1 RTX 5090</span> kaldı.
+          Ayni anda <span className="text-purple-300 font-semibold">5 müşteri</span> "Satın Al"
+          butonuna basıyor... Distributed Lock olmadan <span className="text-red-400">oversell</span> riski!
         </p>
       </motion.div>
 
@@ -628,8 +628,8 @@ export default function DistributedLockSection() {
       <motion.div variants={item}>
         <Tabs
           tabs={[
-            { label: 'Kilit Mekanizmasi', content: <LockMechanismTab /> },
-            { label: 'Es Zamanli Alicilar', content: <ConcurrentBuyersTab /> },
+            { label: 'Kilit Mekanizması', content: <LockMechanismTab /> },
+            { label: 'Eş Zamanlı Alıcılar', content: <ConcurrentBuyersTab /> },
           ]}
         />
       </motion.div>

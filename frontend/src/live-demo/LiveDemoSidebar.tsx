@@ -12,7 +12,7 @@ interface SectionItem {
 const sections: SectionItem[] = [
   {
     id: 'overview',
-    label: 'Genel Bakis',
+    label: 'Genel Bakış',
     subtitle: 'Sistem Mimarisi',
     color: 'cyan',
     icon: (
@@ -24,7 +24,7 @@ const sections: SectionItem[] = [
   {
     id: 'cache-patterns',
     label: "Cache Pattern'leri",
-    subtitle: 'Urun Katalogu',
+    subtitle: 'Ürün Kataloğu',
     color: 'indigo',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -35,7 +35,7 @@ const sections: SectionItem[] = [
   {
     id: 'ttl-invalidation',
     label: 'TTL & Invalidation',
-    subtitle: 'Flash Sale Fiyatlari',
+    subtitle: 'Flash Sale Fiyatları',
     color: 'amber',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -46,7 +46,7 @@ const sections: SectionItem[] = [
   {
     id: 'cache-problems',
     label: 'Cache Problemleri',
-    subtitle: 'Black Friday Trafigi',
+    subtitle: 'Black Friday Trafiği',
     color: 'red',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -56,8 +56,8 @@ const sections: SectionItem[] = [
   },
   {
     id: 'resilience',
-    label: 'Dayaniklilik',
-    subtitle: 'Redis Cokmesi',
+    label: 'Dayanıklılık',
+    subtitle: 'Redis Çökmesi',
     color: 'green',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -67,8 +67,8 @@ const sections: SectionItem[] = [
   },
   {
     id: 'distributed-lock',
-    label: 'Dagitik Kilit',
-    subtitle: 'Son Urun Yarisi',
+    label: 'Dağıtık Kilit',
+    subtitle: 'Son Ürün Yarışı',
     color: 'purple',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -79,7 +79,7 @@ const sections: SectionItem[] = [
   {
     id: 'redlock',
     label: 'Redlock',
-    subtitle: 'Odeme Guvenligi',
+    subtitle: 'Ödeme Güvenliği',
     color: 'rose',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -100,8 +100,8 @@ const sections: SectionItem[] = [
   },
   {
     id: 'e2e-flow',
-    label: 'E2E Siparis Akisi',
-    subtitle: 'Tam Siparis Demo',
+    label: 'E2E Sipariş Akışı',
+    subtitle: 'Tam Sipariş Demo',
     color: 'cyan',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

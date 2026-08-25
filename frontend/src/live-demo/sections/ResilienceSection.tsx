@@ -8,7 +8,7 @@ import LogStream, { LogEntry } from '../shared/LogStream'
 import ComparisonPanel from '../shared/ComparisonPanel'
 import MiniCodeBlock from '../shared/MiniCodeBlock'
 import CircuitBreakerDiagram from '../visualizations/CircuitBreakerDiagram'
-import EcommerceFlowDiagram from '../visualizations/EcommerceFlowDiagram'
+import CircuitBreakerFlowDiagram from '../visualizations/CircuitBreakerFlowDiagram'
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } }
 const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }
@@ -44,7 +44,7 @@ export default function ResilienceSection() {
 
   /* ---- step handlers ---- */
 
-  // 1. Redis'i Cokert
+  // 1. Redis'i Çökert
   const handleCrash = async () => {
     setLoadingStep(1)
     try {
@@ -54,8 +54,8 @@ export default function ResilienceSection() {
       setRedisStatus('down')
       setCbState('OPEN')
       setApiStatus('degraded')
-      pushLog('SIMULATE_FAILURE', res.data?.message ?? 'Redis cokertildi', 'error', ms)
-      addLog('resilience', 'error', 'Redis cokertildi - Circuit Breaker OPEN', ms)
+      pushLog('SIMULATE_FAILURE', res.data?.message ?? 'Redis çökertildi', 'error', ms)
+      addLog('resilience', 'error', 'Redis çökertildi - Circuit Breaker OPEN', ms)
       incrementMetric('totalRequests')
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
@@ -69,7 +69,7 @@ export default function ResilienceSection() {
     }
   }
 
-  // 2. Fail-Open: Siparis Ver
+  // 2. Fail-Open: Sipariş Ver
   const handleFailOpen = async () => {
     setLoadingStep(2)
     try {
@@ -81,11 +81,11 @@ export default function ResilienceSection() {
         'FAIL_OPEN',
         data?.source
           ? `Basarili (kaynak: ${data.source}) - DB fallback ile devam edildi`
-          : 'Siparis islendi (DB fallback)',
+          : 'Sipariş işlendi (DB fallback)',
         'success',
         ms,
       )
-      addLog('resilience', 'success', 'Fail-Open: DB fallback ile siparis islendi', ms)
+      addLog('resilience', 'success', 'Fail-Open: DB fallback ile sipariş işlendi', ms)
       incrementMetric('totalRequests')
       setCbState('HALF_OPEN')
     } catch (err: unknown) {
@@ -96,7 +96,7 @@ export default function ResilienceSection() {
     }
   }
 
-  // 3. Fail-Close: Siparis Ver
+  // 3. Fail-Close: Sipariş Ver
   const handleFailClose = async () => {
     setLoadingStep(3)
     try {
@@ -106,17 +106,17 @@ export default function ResilienceSection() {
       const data = res.data
       pushLog(
         'FAIL_CLOSE',
-        data?.error ?? 'Siparis REDDEDILDI - guvenlik oncelikli',
+        data?.error ?? 'Sipariş REDDEDİLDİ - güvenlik öncelikli',
         'error',
         ms,
       )
-      addLog('resilience', 'error', 'Fail-Close: Siparis reddedildi', ms)
+      addLog('resilience', 'error', 'Fail-Close: Sipariş reddedildi', ms)
       incrementMetric('totalRequests')
     } catch (err: unknown) {
       // Fail-close is expected to reject — that's the point
       const ms = Math.round(performance.now())
-      pushLog('FAIL_CLOSE', 'Siparis REDDEDILDI - ServiceUnavailableException', 'error', undefined)
-      addLog('resilience', 'error', 'Fail-Close: Istek reddedildi (503)', undefined)
+      pushLog('FAIL_CLOSE', 'Sipariş REDDEDİLDİ - ServiceUnavailableException', 'error', undefined)
+      addLog('resilience', 'error', 'Fail-Close: İstek reddedildi (503)', undefined)
       incrementMetric('totalRequests')
     } finally {
       setLoadingStep(null)
@@ -133,8 +133,8 @@ export default function ResilienceSection() {
       setRedisStatus('healthy')
       setCbState('CLOSED')
       setApiStatus('healthy')
-      pushLog('RESET', 'Sistem tamamen onarildi', 'success', ms)
-      addLog('resilience', 'success', 'Sistem onarildi - Circuit Breaker CLOSED', ms)
+      pushLog('RESET', 'Sistem tamamen onarıldı', 'success', ms)
+      addLog('resilience', 'success', 'Sistem onarıldı - Circuit Breaker CLOSED', ms)
       markCompleted('resilience')
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
@@ -181,11 +181,11 @@ export default function ResilienceSection() {
         variants={item}
         className="glass p-4 border border-green-500/20 bg-green-500/5 rounded-xl"
       >
-        <h3 className="text-sm font-bold text-green-400 mb-1">Senaryo: Redis Cokme Aninda Siparis Akisi</h3>
+        <h3 className="text-sm font-bold text-green-400 mb-1">Senaryo: Redis Çökme Aninda Sipariş Akışı</h3>
         <p className="text-xs text-gray-400 leading-relaxed">
-          Peak saatte Redis sunucusu coktu.{' '}
-          <span className="text-amber-400 font-semibold">50.000</span> aktif kullanici sipariste.
-          Circuit Breaker devreye giriyor — fail-open mi, fail-close mu? Hangisi ne zaman kullanilir?
+          Peak saatte Redis sunucusu çöktü.{' '}
+          <span className="text-amber-400 font-semibold">50.000</span> aktif kullanıcı siparişte.
+          Circuit Breaker devreye giriyor — fail-open mi, fail-close mu? Hangisi ne zaman kullanılır?
         </p>
       </motion.div>
 
@@ -201,7 +201,7 @@ export default function ResilienceSection() {
           </div>
           <StatusBadge
             type={redisStatus === 'healthy' ? 'OK' : 'ERROR'}
-            label={redisStatus === 'healthy' ? 'Saglikli' : 'Coktu'}
+            label={redisStatus === 'healthy' ? 'Sağlıklı' : 'Çöktü'}
           />
         </div>
 
@@ -229,7 +229,7 @@ export default function ResilienceSection() {
           </div>
           <StatusBadge
             type={apiStatus === 'healthy' ? 'OK' : apiStatus === 'degraded' ? 'WAITING' : 'ERROR'}
-            label={apiStatus === 'healthy' ? 'Saglikli' : apiStatus === 'degraded' ? 'Dusuk Performans' : 'Coktu'}
+            label={apiStatus === 'healthy' ? 'Sağlıklı' : apiStatus === 'degraded' ? 'Düşük Performans' : 'Çöktü'}
           />
         </div>
       </motion.div>
@@ -237,7 +237,7 @@ export default function ResilienceSection() {
       {/* -------- Step-by-Step Demo (4 buttons) -------- */}
       <motion.div variants={item} className="glass p-4 rounded-xl space-y-3">
         <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold">
-          Adim Adim Demo
+          Adım Adım Demo
         </h4>
         <div className="grid grid-cols-2 gap-2">
           <ActionButton
@@ -250,7 +250,7 @@ export default function ResilienceSection() {
               </svg>
             }
           >
-            1. Redis'i Cokert
+            1. Redis'i Çökert
           </ActionButton>
 
           <ActionButton
@@ -264,7 +264,7 @@ export default function ResilienceSection() {
               </svg>
             }
           >
-            2. Fail-Open: Siparis Ver
+            2. Fail-Open: Sipariş Ver
           </ActionButton>
 
           <ActionButton
@@ -278,7 +278,7 @@ export default function ResilienceSection() {
               </svg>
             }
           >
-            3. Fail-Close: Siparis Ver
+            3. Fail-Close: Sipariş Ver
           </ActionButton>
 
           <ActionButton
@@ -305,28 +305,28 @@ export default function ResilienceSection() {
       {/* -------- Ecommerce Flow Diagram -------- */}
       <motion.div variants={item} className="glass p-4 rounded-xl">
         <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">
-          Redis Hata Durumunda Istek Akisi
+          Redis Hata Durumunda İstek Akışı
         </h4>
-        <EcommerceFlowDiagram mode="circuit-breaker" />
+        <CircuitBreakerFlowDiagram />
       </motion.div>
 
       {/* -------- Fail-Open vs Fail-Close Comparison -------- */}
       <motion.div variants={item}>
         <h4 className="text-[10px] text-gray-500 uppercase tracking-wide font-semibold mb-2">
-          Fail-Open vs Fail-Close Karsilastirmasi
+          Fail-Open vs Fail-Close Karşılaştırması
         </h4>
         <ComparisonPanel
-          leftTitle="Fail-Close (Guvenlik Oncelikli)"
-          rightTitle="Fail-Open (Kullanilabilirlik Oncelikli)"
+          leftTitle="Fail-Close (Güvenlik Öncelikli)"
+          rightTitle="Fail-Open (Kullanılabilirlik Öncelikli)"
           leftMetrics={[
-            { label: 'Strateji', value: 'Guvenlik oncelikli' },
-            { label: 'Redis cokerse', value: 'Siparisi REDDEDER' },
-            { label: 'Kullanim alani', value: 'Odeme, stok azaltma' },
+            { label: 'Strateji', value: 'Güvenlik öncelikli' },
+            { label: 'Redis cokerse', value: 'Siparişi REDDEDER' },
+            { label: 'Kullanim alani', value: 'Ödeme, stok azaltma' },
           ]}
           rightMetrics={[
-            { label: 'Strateji', value: 'Kullanilabilirlik oncelikli' },
+            { label: 'Strateji', value: 'Kullanılabilirlik öncelikli' },
             { label: 'Redis cokerse', value: "DB'den devam eder" },
-            { label: 'Kullanim alani', value: 'Sepet, urun listeleme' },
+            { label: 'Kullanim alani', value: 'Sepet, ürün listeleme' },
           ]}
         />
       </motion.div>

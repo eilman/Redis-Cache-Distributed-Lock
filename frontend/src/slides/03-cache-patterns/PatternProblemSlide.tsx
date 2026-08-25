@@ -84,7 +84,7 @@ export default function PatternProblemSlide() {
         className="glass p-4 max-w-2xl mx-auto text-center"
       >
         <p className="text-sm text-gray-400">
-          Şimdi bu <span className="text-white font-semibold">3 farkli yaklaşımı</span> tek tek inceleyelim
+          Şimdi bu <span className="text-white font-semibold">3 farklı yaklaşımı</span> tek tek inceleyelim
           ve hangisinin ne zaman uygun olduğunu görelim.
         </p>
       </motion.div>

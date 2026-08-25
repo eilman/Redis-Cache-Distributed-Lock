@@ -7,7 +7,7 @@ import Tabs from '../../components/ui/Tabs'
 import ActionButton from '../shared/ActionButton'
 import StatusBadge from '../shared/StatusBadge'
 import LogStream, { LogEntry } from '../shared/LogStream'
-import EcommerceFlowDiagram from '../visualizations/EcommerceFlowDiagram'
+import CachePatternFlowDiagram from '../visualizations/CachePatternFlowDiagram'
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } }
 const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
@@ -114,7 +114,7 @@ function CacheAsideTab() {
         pushLog(`Okuma #${i + 1}`, `HATA: ${msg}`, 'error')
       }
     }
-    addLog('cache-patterns', 'success', `3 ardisik okuma tamamlandi (product:${productId})`)
+    addLog('cache-patterns', 'success', `3 ardışık okuma tamamlandı (product:${productId})`)
     setLoading(false)
   }, [productId, addLog, incrementMetric, pushLog])
 
@@ -125,7 +125,7 @@ function CacheAsideTab() {
         <motion.div variants={item} className="space-y-3">
           <ProductSelector value={productId} onChange={setProductId} />
           <div className="flex flex-wrap gap-2">
-            <ActionButton onClick={handleRead} loading={loading} variant="primary">Urun Goruntule</ActionButton>
+            <ActionButton onClick={handleRead} loading={loading} variant="primary">Ürün Görüntüle</ActionButton>
             <ActionButton onClick={handleClear} loading={loading} variant="danger">Cache'i Temizle</ActionButton>
             <ActionButton onClick={handleTripleRead} loading={loading} variant="success">Ard Arda 3 Oku</ActionButton>
           </div>
@@ -135,7 +135,7 @@ function CacheAsideTab() {
 
         {/* Right: Diagram */}
         <motion.div variants={item} className="glass p-3">
-          <EcommerceFlowDiagram mode="cache-aside" isHit={source === 'HIT'} />
+          <CachePatternFlowDiagram mode="cache-aside" isHit={source === 'HIT'} />
         </motion.div>
       </div>
       <LogStream logs={logs} onClear={() => setLogs([])} />
@@ -190,7 +190,7 @@ function ReadThroughTab() {
           {result && <ProductCard data={result as { name: string; price: number; category: string }} />}
         </motion.div>
         <motion.div variants={item} className="glass p-3">
-          <EcommerceFlowDiagram mode="read-through" isHit={source === 'HIT'} />
+          <CachePatternFlowDiagram mode="read-through" isHit={source === 'HIT'} />
         </motion.div>
       </div>
       <LogStream logs={logs} onClear={() => setLogs([])} />
@@ -230,7 +230,7 @@ function WriteThroughTab() {
       const meta = res.data?.metadata
       incrementMetric('totalRequests')
       pushLog('Write-Through PUT', `OK (${meta?.executionTimeMs ?? '-'}ms)`, 'success', meta?.executionTimeMs)
-      addLog('cache-patterns', 'success', `Write-Through product:${productId} guncellendi`, meta?.executionTimeMs)
+      addLog('cache-patterns', 'success', `Write-Through product:${productId} güncellendi`, meta?.executionTimeMs)
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
       pushLog('Write-Through PUT', `HATA: ${msg}`, 'error')
@@ -249,11 +249,11 @@ function WriteThroughTab() {
       setResult(data)
       incrementMetric('totalRequests')
       incrementMetric('cacheHits')
-      pushLog('Dogrulama Oku', `HIT (${meta?.executionTimeMs ?? '-'}ms)`, 'hit', meta?.executionTimeMs)
-      addLog('cache-patterns', 'hit', `Dogrulama: product:${productId} cache'den okundu`, meta?.executionTimeMs)
+      pushLog('Doğrulama Oku', `HIT (${meta?.executionTimeMs ?? '-'}ms)`, 'hit', meta?.executionTimeMs)
+      addLog('cache-patterns', 'hit', `Doğrulama: product:${productId} cache'den okundu`, meta?.executionTimeMs)
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Bilinmeyen hata'
-      pushLog('Dogrulama Oku', `HATA: ${msg}`, 'error')
+      pushLog('Doğrulama Oku', `HATA: ${msg}`, 'error')
     } finally {
       setLoading(false)
     }
@@ -267,7 +267,7 @@ function WriteThroughTab() {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Urun adi"
+            placeholder="Ürün adi"
             className="w-full rounded-lg border border-cyan-500/20 bg-black/30 text-sm text-gray-200 px-3 py-2 focus:outline-none focus:border-cyan-400/50"
           />
           <input
@@ -278,13 +278,13 @@ function WriteThroughTab() {
             className="w-full rounded-lg border border-cyan-500/20 bg-black/30 text-sm text-gray-200 px-3 py-2 focus:outline-none focus:border-cyan-400/50"
           />
           <div className="flex flex-wrap gap-2">
-            <ActionButton onClick={handleWrite} loading={loading} variant="warning">Guncelle</ActionButton>
+            <ActionButton onClick={handleWrite} loading={loading} variant="warning">Güncelle</ActionButton>
             <ActionButton onClick={handleVerify} loading={loading} variant="success">Tekrar Oku</ActionButton>
           </div>
           {result && <ProductCard data={result as { name: string; price: number; category: string }} />}
         </motion.div>
         <motion.div variants={item} className="glass p-3">
-          <EcommerceFlowDiagram mode="write-through" />
+          <CachePatternFlowDiagram mode="write-through" />
         </motion.div>
       </div>
       <LogStream logs={logs} onClear={() => setLogs([])} />
@@ -302,7 +302,7 @@ export default function CachePatternsSection() {
       <div className="glass p-4">
         <h2 className="text-lg font-bold text-gradient mb-1">Cache Patterns</h2>
         <p className="text-sm text-gray-400">
-          Senaryo: Musteri TechMart'ta urun katalogu tariyor. Veri nereden geliyor?
+          Senaryo: Müşteri TechMart'ta ürün kataloğu tariyor. Veri nereden geliyor?
         </p>
       </div>
 
