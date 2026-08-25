@@ -1,0 +1,63 @@
+### Gradle ###
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Node ###
+node_modules/
+frontend/dist/
+docs/node_modules/
+
+### Claude Code ###
+.claude/
+
+### Mac OS ###
+.DS_Store
+
+### Environment & Secrets ###
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+### Logs ###
+*.log
+npm-debug.log*
+
+### Misc ###
+*.swp
+*.swo
+*~
