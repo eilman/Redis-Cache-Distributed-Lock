@@ -138,6 +138,7 @@ export default function QASlide() {
         Teşekkürler!
       </motion.p>
 
+
       {/* Tech stack badges */}
       <motion.div
         initial={{ opacity: 0 }}

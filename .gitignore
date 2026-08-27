@@ -40,7 +40,7 @@ node_modules/
 frontend/dist/
 docs/node_modules/
 
-### Claude Code ###
+### Tools ###
 .claude/
 
 ### Mac OS ###

@@ -91,6 +91,12 @@ export default function PresentationEngine() {
         showHelp={showHelp}
         setShowHelp={setShowHelp}
       />
+
+      {/* Presenter footer */}
+      <div className="fixed bottom-8 left-6 z-50 flex items-center gap-2 select-none pointer-events-none">
+        <div className="w-px h-3 bg-gradient-to-b from-cyan-500/40 to-purple-500/40" />
+        <span className="text-[11px] text-gray-500 font-mono tracking-wide">Ekin Ilman</span>
+      </div>
     </div>
   )
 }
